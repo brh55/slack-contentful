@@ -1,0 +1,22 @@
+{
+  "name": "slack-contentful",
+  "version": "0.0.1",
+  "description": "Slack notifications for a specified entry",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "slack",
+    "contentful",
+    "node"
+  ],
+  "author": "Brandon Him",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "node-slack": "0.0.7",
+    "utils": "^0.2.2"
+  }
+}
