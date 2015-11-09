@@ -1,7 +1,7 @@
 'use strict';
 
-var config = require('./config');
-var settings = require('./settings');
+//var config = require('./config');
+var filter = require('./filter');
 
 module.exports = (function () {
     /**
@@ -51,19 +51,38 @@ module.exports = (function () {
     var buildMsg = function (message) {
         var attachment = [];
         var messageObj = {
-            "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "pretext": "Optional text that appears above the attachment block",
-            "author_name": "Bobby Tables",
-            "author_link": "http://flickr.com/bobby/",
-            "author_icon": "http://flickr.com/icons/bobby.jpg",
-            "title": "Slack API Documentation",
-            "title_link": "https://api.slack.com/",
-            "text": "Optional text that appears within the attachment"
+            "fallback": "",
+            "color": "#27ae60",
+            "title": "",
+            "title_link": "",
+            "text": "",
+            "fields": []
         };
 
+        messageObj.fallback = "Changes done to entry: " + message.fields.name.en-US;
+        messageObj.title = message.fields.name.en-US;
+        messageObj.title_link = 'https://app.contentful.com/spaces/' + message.sys.space.sys.id + '/entries' + message.sys.id;
+        messageObj.text = message.fields.content.en-US;
 
+        // TODO Wrap into Methods
+        var dateField = {
+            "title": "Updated At",
+            "value": "",
+            "short": true
+        }
+
+        var entryField = {
+            "title": "Type",
+            "value": "",
+            "short": true
+        }
+
+        dateField.value = formatDate(message.sys.createdAt);
+        entryField.value = message.sys.type;
+
+        messageObj.fields.push(dateField, entryField);
         attachment.push(messageObj);
+
         return attachment;
     }
 
@@ -73,7 +92,7 @@ module.exports = (function () {
      * @return {[boolean]}         [return if entry should be notified or not]
      */
     var checkEntry = function (entryId) {
-        if (settings.entries.indexOf(entryId) > 1) {
+        if (filter.entries.indexOf(entryId) > 1) {
             return true;
         } else {
             return false;
