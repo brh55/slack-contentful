@@ -48,7 +48,7 @@ module.exports = (function () {
      * @param  {[string]} message [string]
      * @return {[array]}         [attachment array containing message]
      */
-    var buildMsg = function (message) {
+    var buildAttachment = function (reqBody) {
         var attachment = [];
         var messageObj = {
             "fallback": "",
@@ -59,10 +59,10 @@ module.exports = (function () {
             "fields": []
         };
 
-        messageObj.fallback = "Changes done to entry: " + message.fields.name.en-US;
-        messageObj.title = message.fields.name.en-US;
-        messageObj.title_link = 'https://app.contentful.com/spaces/' + message.sys.space.sys.id + '/entries' + message.sys.id;
-        messageObj.text = message.fields.content.en-US;
+        messageObj.fallback = "Changes done to entry: " + reqBody.fields.name['en-US'];
+        messageObj.title = reqBody.fields.name['en-US'];
+        messageObj.title_link = 'https://app.contentful.com/spaces/' + reqBody.sys.space.sys.id + '/entries/' + reqBody.sys.id;
+        messageObj.text = reqBody.fields.content['en-US'];
 
         // TODO Wrap into Methods
         var dateField = {
@@ -77,14 +77,29 @@ module.exports = (function () {
             "short": true
         }
 
-        dateField.value = formatDate(message.sys.createdAt);
-        entryField.value = message.sys.type;
+        dateField.value = formatDate(reqBody.sys.createdAt);
+        entryField.value = reqBody.sys.type;
 
         messageObj.fields.push(dateField, entryField);
         attachment.push(messageObj);
 
         return attachment;
     }
+
+    var buildMessage = function (reqBody) {
+        var attachment = buildAttachment(reqBody);
+
+        var message = {
+            text: 'Howdy!',
+            channel: '#foo',
+            username: 'Bot',
+            attachments: []
+        };
+
+        message.attachments = attachment;
+
+        return message;
+    };
 
     /**
      * Compare incoming hook entry against entry list
@@ -101,7 +116,7 @@ module.exports = (function () {
 
     return {
         formatDate: formatDate,
-        buildMsg: buildMsg,
+        buildMessage: buildMessage,
         checkEntry: checkEntry
     }
 })();
