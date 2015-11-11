@@ -1,18 +1,23 @@
 'use strict';
 
 var Slack = require('node-slack');
-//var config = require('./config');
+var config = require('./config');
 var util = require('./util');
 
 module.exports = (function () {
-    var slack = new Slack('');
+    var slack;
+
+    if (typeof config.webhook !== 'undefined') {
+        slack = new Slack(config.webhook);
+    } else {
+        console.log("Please ensure webhook is properly set up");
+    }
 
     /**
-     * send Slack message
+     * Slack Wrapper to send Slack message
      * @param  {[string]} message [string of message to be send]
      */
     var sendMessage = function (message) {
-        console.log(message);
         slack.send(message);
     };
 
