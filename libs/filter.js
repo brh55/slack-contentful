@@ -7,5 +7,6 @@ module.exports = {
         //'example entry 1',
         //'example entry 2',
         //'example entry 3'
-    ]
+    ],
+    onPublish: true
 };
