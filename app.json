@@ -32,7 +32,7 @@
       "description": "The name of any available custom or default Emoji to be used for the bot icon.",
       "value": "pencil2",
       "required": false
-    }
+    },
     "UPDATE_COLOR": {
       "description": "Hex value for updates posted to Slack",
       "value": "#27ae60",
