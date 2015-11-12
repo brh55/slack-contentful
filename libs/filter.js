@@ -18,7 +18,7 @@ module.exports = (function () {
 		 */
 		getEntries: function () {
 			if (action.isEntryDefined()) {
-				var formatString = entryString.replace(' ', '');
+				var formatString = model.entryString.replace(' ', '');
 				model.entryList = formatString.split(',');
 			} else {
 				console.log("No proper entries declared in .env file");
@@ -53,7 +53,7 @@ module.exports = (function () {
         checkEntry: function (entryId) {
         	var entryList = action.getEntries();
 
-            if (entryList.indexOf(entryId) > 1) {
+            if (entryList.indexOf(entryId) > -1) {
                 return true;
             } else {
                 return false;

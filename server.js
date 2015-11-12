@@ -21,7 +21,7 @@ var jsonParser = bodyParser.json({type: 'application/*'});
 
 app.post('/', jsonParser, function(req, res) {
     var currentField = req.body.fields;
-    var prevField = appCache.get('fields');
+    //var prevField = appCache.get('fields');
 
     // if request doesn't contain body, respond with 400 error.
     if (!req.body) return res.sendStatus(400);
@@ -37,8 +37,6 @@ app.post('/', jsonParser, function(req, res) {
         // if (typeof prevField === 'undefined') {
         //     appCache.set('fields', currentField);
         // }
-
-        // messageController.parseResponse(req.body);
     }
 });
 
@@ -57,5 +55,5 @@ app.get('/check', function(req, res) {
 
 
 app.listen(port, function() {
-    console.log('Slack Contentful is listening on ', port);
+    console.log('Slack Contentful is listening on PORT:', port);
 });
