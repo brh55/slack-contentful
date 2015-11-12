@@ -6,10 +6,13 @@ var config = require('./config');
 module.exports = (function () {
     var model = {
         message: {
+            text: 'Contentful Entry Changes:',
             channel: config.channel,
             username: config.username,
             icon_emoji: config.emoji,
-            attachments: []
+            attachments: [],
+            unfurl_links: true,
+            link_names: 1
         },
         attachmentObj: {
             "fallback": "",
@@ -39,12 +42,20 @@ module.exports = (function () {
             attachmentObj.fallback = "Changes done to entry: " + reqBody.fields.name['en-US'];
             attachmentObj.title = reqBody.fields.name['en-US'];
             attachmentObj.title_link = action.buildEntryUrl(reqBody.sys.space.sys.id, reqBody.sys.id);
-            attachmentObj.text = reqBody.fields.content['en-US'];
 
+            // TODO: See if particular field changes are given in the payload,
+            // if so, narrow the displayed results to something more meaningful.
+            var keys = Object.keys(reqBody.fields);
+            var keyString = keys.toString();
+
+            var firstFieldText = reqBody.fields[keys[1]]['en-US'];
+            attachmentObj.text = "Preview";
+
+            var fieldsField = action.buildField("Fields", keyString, false);
             var dateField = action.buildDateField(reqBody.sys.createdAt);
             var entryField = action.buildEntryField(reqBody.sys.type);
 
-            attachmentObj.fields.push(dateField, entryField);
+            attachmentObj.fields.push(fieldsField, dateField, entryField);
             attachment.push(attachmentObj);
 
             return attachment;
@@ -62,10 +73,10 @@ module.exports = (function () {
 
         /**
          * Builds a Date Short Field Object
-         * @param  {[string]} date [ISO Format of date]
+         * @param  {[string]} ISODate [ISO Format of date]
          * @return {[object]}      [Short field declaring date of update]
          */
-        buildDateField: function (ISOdate) {
+        buildDateField: function (ISODate) {
             var dateField = model.shortField;
 
             dateField.title = "Updated At";
@@ -89,6 +100,23 @@ module.exports = (function () {
         },
 
         /**
+         * Build a generic field short or long
+         * @param  {[string]} title     [The title of the short field]
+         * @param  {[string]} value     [value with the shortField]
+         * @param  {[boolean]} shortBool [shortField boolean]
+         * @return {[type]}           [description]
+         */
+        buildField: function (title, value, shortBool) {
+            var field = model.shortField;
+
+            field.short = (shortBool === true) ? true : false;
+            field.title = title;
+            field.value = value;
+
+            return field;
+        },
+
+        /**
          * Builds Payload to be sent to Slack hook
          * @param  {[object]} reqBody [JSON of request body]
          * @return {[object]}         [prase message based on JSON request body]
@@ -98,12 +126,11 @@ module.exports = (function () {
             var message = model.message;
 
             message.attachments = attachment;
-
             return message;
         }
     };
 
     return {
         buildMessage: action.buildMessage
-    }
+    };
 })();

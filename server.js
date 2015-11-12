@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var util = require('./libs/util');
 var config = require('./libs/config');
 var slackService = require('./libs/slackService');
-var messageController = require('./libs/messageCtrl')
+var messageCtrl = require('./libs/messageCtrl')
 var filter = require('./libs/filter');
 
 var jsonParser = bodyParser.json({type: 'application/*'});
@@ -27,12 +27,12 @@ app.post('/', jsonParser, function(req, res) {
     if (!req.body) return res.sendStatus(400);
 
     var correctEntry = filter.checkEntry(req.body.sys.id);
-
     // check for publish notifications
-    if (req.rawHeaders.indexOf('ContentManagement.Entry.publish') > 1
+    if (req.rawHeaders.indexOf('ContentManagement.Entry.publish') > -1
             && correctEntry) {
 
         var message = messageCtrl.buildMessage(req.body);
+        console.log(message);
         slackService.sendMessage(message);
         // if (typeof prevField === 'undefined') {
         //     appCache.set('fields', currentField);
