@@ -26,6 +26,7 @@
     },
     "BOT_USERNAME": {
       "description": "The slack bot's username. NOTE: Setting this will override integration settings",
+      "value": "Contentful-Update",
       "required": false
     },
     "BOT_EMOJI": {

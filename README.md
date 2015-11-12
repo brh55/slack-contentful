@@ -1,6 +1,7 @@
 # Slack Contentful
 [![Build Status](https://travis-ci.org/brh55/slack-contentful.svg?branch=master)](https://travis-ci.org/brh55/slack-contentful)
 [![devDendencies Status](https://david-dm.org/brh55/slack-contentful/dev-status.svg)](https://david-dm.org/brh55/slack-contentful#info=Dependencies)
+
 **DISCLAIMER: This is still a work in progress, AND DOES NOT WORK AS FULL INTENDED**
 
 This node instance allow users to set up notifications "on published" changes to specified Contentful entries to a designated Slack channel.
@@ -67,6 +68,19 @@ UPDATE_COLOR = "#27ae60"
 5. Click Create Webhook
 
 And you're all set!
+
+## Post Deployment - Test
+
+After your app has deployed, go to your server url and go to the `/check` endpoint.
+
+Example:
+```
+http://myherokuapp.heroku.com/check
+```
+
+If you've successfully deployed, you should get a successful message stating *Successful Set-up* and important configurations you have set up.
+
+If not you should get a message verify your following configs, and a list of potential errors.
 
 ## Contribute
 Currently the project is not at the best possible shape, and can be refactor quite a bit. You are more than welcome to submit any issues and feature request to issues section of the repo. I'm no means a expert in Node, so feel free to submit PR for refactors, typos, features, readme clarity, etc.
