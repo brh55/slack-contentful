@@ -62,8 +62,11 @@ UPDATE_COLOR = "#27ae60"
 
 1. Go to [Contentful](https://contentful.com).
 2. Login with your credentials.
-3. Locate the settings, and click on 'outgoing hooks'
-4. Add an outgoing hook, and enter your server address in the hook url
+3. Locate the cog icon labeled settings, and click on 'webhooks'
+4. Hit "New Webhook", and enter your server address in the URL bar
+5. Click Create Webhook
+
+And you're all set!
 
 ## Contribute
 Currently the project is not at the best possible shape, and can be refactor quite a bit. You are more than welcome to submit any issues and feature request to issues section of the repo. I'm no means a expert in Node, so feel free to submit PR for refactors, typos, features, readme clarity, etc.
