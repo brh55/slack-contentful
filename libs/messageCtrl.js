@@ -2,6 +2,7 @@
 
 var util = require('./util');
 var config = require('./config');
+var nodeUtil = require('util');
 
 module.exports = (function () {
     var model = {
@@ -47,6 +48,7 @@ module.exports = (function () {
             // if so, narrow the displayed results to something more meaningful.
             var keys = Object.keys(reqBody.fields);
             var keyString = keys.toString();
+            keyString = keyString.replace(/,/g, ', ');
 
             var firstFieldText = reqBody.fields[keys[1]]['en-US'];
             attachmentObj.text = "Preview";
@@ -55,7 +57,10 @@ module.exports = (function () {
             var dateField = action.buildDateField(reqBody.sys.createdAt);
             var entryField = action.buildEntryField(reqBody.sys.type);
 
-            attachmentObj.fields.push(fieldsField, dateField, entryField);
+            attachmentObj.fields.push(fieldsField);
+            attachmentObj.fields.push(dateField);
+            attachmentObj.fields.push(entryField);
+
             attachment.push(attachmentObj);
 
             return attachment;
@@ -77,7 +82,7 @@ module.exports = (function () {
          * @return {[object]}      [Short field declaring date of update]
          */
         buildDateField: function (ISODate) {
-            var dateField = model.shortField;
+            var dateField = nodeUtil._extend({}, model.shortField);
 
             dateField.title = "Updated At";
             dateField.value = util.formatDate(ISODate);
@@ -91,7 +96,7 @@ module.exports = (function () {
          * @return {[object]}           [Short field declaring type of entry]
          */
         buildEntryField: function (entryType) {
-            var entryField = model.shortField;
+            var entryField = nodeUtil._extend({}, model.shortField);
 
             entryField.title = "Type"
             entryField.value = entryType;
@@ -107,7 +112,7 @@ module.exports = (function () {
          * @return {[type]}           [description]
          */
         buildField: function (title, value, shortBool) {
-            var field = model.shortField;
+            var field = nodeUtil._extend({}, model.shortField);
 
             field.short = (shortBool === true) ? true : false;
             field.title = title;
