@@ -26,7 +26,7 @@ module.exports = (function () {
             var hours = ((hour + 11) % 12 + 1);
             var suffix = (hours >= 12) ? 'PM' : 'AM';
 
-            var formattedDate = monthDate + ' ' + hours + ':' + mins + ' ' + suffix;
+            var formattedDate = monthDate + ' ' + hours + ':' + mins + ' ' + suffix + 'UTC';
 
             return formattedDate;
         },

@@ -54,7 +54,7 @@ module.exports = (function () {
             attachmentObj.text = "Preview";
 
             var fieldsField = action.buildField("Fields", keyString, false);
-            var dateField = action.buildDateField(reqBody.sys.createdAt);
+            var dateField = action.buildDateField(reqBody.sys.updatedAt);
             var entryField = action.buildEntryField(reqBody.sys.type);
 
             attachmentObj.fields.push(fieldsField);
