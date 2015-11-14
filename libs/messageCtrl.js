@@ -55,7 +55,7 @@ module.exports = (function () {
 
             var fieldsField = action.buildField("Fields", keyString, false);
             var dateField = action.buildDateField(reqBody.sys.updatedAt);
-            var entryField = action.buildEntryField(reqBody.sys.type);
+            var entryField = action.buildEntryField(reqBody.sys.contentType.type);
 
             attachmentObj.fields.push(fieldsField);
             attachmentObj.fields.push(dateField);
