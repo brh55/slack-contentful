@@ -3,6 +3,9 @@
 
 [![Build Status](https://travis-ci.org/brh55/slack-contentful.svg?branch=master)](https://travis-ci.org/brh55/slack-contentful)
 [![devDendencies Status](https://david-dm.org/brh55/slack-contentful/dev-status.svg)](https://david-dm.org/brh55/slack-contentful#info=Dependencies)
+[![Coverage Status](https://coveralls.io/repos/brh55/slack-contentful/badge.svg?branch=master&service=github)](https://coveralls.io/github/brh55/slack-contentful?branch=master)
+[![Support via Gratipay](http://img.shields.io/gratipay/brh55.svg?style=flat-square)](https://gratipay.com/brh55)
+
 
 This node instance allow users to set up notifications "on published" changes to specified Contentful entries to a designated Slack channel.
 
