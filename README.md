@@ -1,8 +1,8 @@
 # Slack Contentful
+![Contentful Icon](https://lh5.googleusercontent.com/SiTAEkDd09U_7ngpQgCzQq4LXL-1876MnOr0AdCofQ0-l5TCWIUXRGviAQlAABj6h9bB6WLE=s50-h50-e365) ![Slack Icon](http://dist.alternativeto.net/icons/slack_59044.png?width=50&height=50&mode=crop&anchor=middlecenter)  
+
 [![Build Status](https://travis-ci.org/brh55/slack-contentful.svg?branch=master)](https://travis-ci.org/brh55/slack-contentful)
 [![devDendencies Status](https://david-dm.org/brh55/slack-contentful/dev-status.svg)](https://david-dm.org/brh55/slack-contentful#info=Dependencies)
-
-**DISCLAIMER: This is still a work in progress, AND DOES NOT WORK AS FULL INTENDED**
 
 This node instance allow users to set up notifications "on published" changes to specified Contentful entries to a designated Slack channel.
 
@@ -29,6 +29,9 @@ __example.env__
 #REQUIRED VALUE, HOOK is available on Slack Integration Page
 SLACK_WEBHOOK = https://hooks.slack.com/services/.../.../...
 SLACK_CHANNEL = ChannelHere
+
+#ENTRIES, list all entries to be tracked in a comma seperated format
+ENTRIES= entryID1, entryID2, etc, etc
 
 #The following values are optional, but the app will take the defaults as specified below
 PORT = 5000
