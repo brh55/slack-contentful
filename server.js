@@ -33,8 +33,6 @@ app.post('/', jsonParser, function(req, res) {
             && correctEntry) {
 
         var key = req.body.sys.id;
-        console.log(key);
-        console.log(entryCache.get(key));
         if (entryCache.get(key) !== true) {
             var message = messageCtrl.buildMessage(req.body);
             slackService.sendMessage(message);
