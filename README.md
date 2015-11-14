@@ -83,9 +83,9 @@ http://myherokuapp.heroku.com/check
 
 If you've successfully deployed, you should get a successful message stating *Successful Set-up* and important configurations you have set up.
 
-If not you should get a message verify your following configs, and a list of potential errors.
+If not you should get a message to verify your following configs, and a list of potential errors that may need to be set up properly.
 
 ## Contribute
-Currently the project is not at the best possible shape, and can be refactor quite a bit. You are more than welcome to submit any issues and feature request to issues section of the repo. I'm no means a expert in Node, so feel free to submit PR for refactors, typos, features, readme clarity, etc.
+Currently the project is not at the best possible shape, and can be refactor quite a bit. You are more than welcome to submit any issues and feature request to issues section of the repo. I'm no means a expert in Node, so feel free to submit PR for refactors, typos, features, README clarity, etc.
 
 
