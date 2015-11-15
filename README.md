@@ -69,9 +69,9 @@ UPDATE_COLOR = "#27ae60"
 
 1. Go to [Contentful](https://contentful.com).
 2. Login with your credentials.
-3. Locate the cog icon labeled settings, and click on 'webhooks'
-4. Hit "New Webhook", and enter your server address in the URL bar
-5. Click Create Webhook
+3. Locate the cog icon labeled settings, and click on 'webhooks'.
+4. Hit 'New Webhook', and enter your server address in the URL bar.
+5. Click 'Create Webhook'.
 
 And you're all set!
 
@@ -84,11 +84,11 @@ Example:
 http://myherokuapp.heroku.com/check
 ```
 
-If you've successfully deployed, you should get a successful message stating *Successful Set-up* and important configurations you have set up.
+If you've successfully deployed, you should get a successful message stating *Successful Set-up* along with a table of configurations to verify against.
 
-If not you should get a message to verify your following configs, and a list of potential errors that may need to be set up properly.
+If set up was unsuccessful, you should get a message to verify your configurations, along with important configurations that the server has set up.
 
 ## Contribute
-Currently the project is not at the best possible shape, and can be refactor quite a bit. You are more than welcome to submit any issues and feature request to issues section of the repo. I'm no means a expert in Node, so feel free to submit PR for refactors, typos, features, README clarity, etc.
+A bulk of the project can be refactored quite a bit. Thus, if you are more than welcome to submit any issues and feature request to the issues section of the repo. I'm no means a expert in Node, so feel free to submit PR for refactors, typos, features, README clarity, etc. All I ask is maintain the code style in place, and keep the code clean.
 
 
