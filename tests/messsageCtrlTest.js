@@ -36,6 +36,10 @@ module.exports = messageCtrlTest({
 
 		test.equal(typeof message, "object");
 		test.equal(message.channel, "#bot-testing");
+
+		// Subject to change, but expect 3
+		test.equal(message.attachments[0].fields.length, 3);
+
 		test.equal(message.attachments[0].title_link, "https://app.contentful.com/spaces/test/entries/6aFz3qcuPe0eA8kwQm0U-test");
 		test.equal(message.attachments[0].title, "Test Title");
 		test.done();
