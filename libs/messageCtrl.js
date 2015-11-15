@@ -51,11 +51,11 @@ module.exports = (function () {
             keyString = keyString.replace(/,/g, ', ');
 
             var firstFieldText = reqBody.fields[keys[1]]['en-US'];
-            attachmentObj.text = "Preview";
+            attachmentObj.text = reqBody.sys.type;
 
             var fieldsField = action.buildField("Fields", keyString, false);
             var dateField = action.buildDateField(reqBody.sys.updatedAt);
-            var entryField = action.buildEntryField(reqBody.sys.contentType.type);
+            var entryField = action.buildEntryField(reqBody.sys.contentType.sys.type);
 
             attachmentObj.fields.push(fieldsField);
             attachmentObj.fields.push(dateField);
