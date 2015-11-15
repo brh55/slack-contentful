@@ -58,7 +58,7 @@ module.exports = (function () {
                 }
             }
 
-            return undefKeys.toString().replace(',', formatSeparator);
+            return undefKeys.toString().replace(/,/g, formatSeparator);
         }
     };
 
