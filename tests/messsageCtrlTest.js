@@ -10,9 +10,11 @@ var mockBody = {
         },
         type: 'Entry',
         contentType: {
-            type: 'Link',
-            linkType: 'ContentType',
-            id: '5SAPoBZF5Y0OuuEGaumi0m0'
+            sys: {
+                type: 'Link',
+                linkType: 'ContentType',
+                id: '5SAPoBZF5Y0OuuEGaumi0m0'
+            }
         },
         id: '6aFz3qcuPe0eA8kwQm0U-test',
         revision: 189,
@@ -24,7 +26,8 @@ var mockBody = {
         },
         sections: [Object],
         morefield: [Object],
-        moorestuff: [Object]
+        moorestuff: [Object],
+        moreRandomFields: []
     },
     length: undefined,
     read: [Function]
@@ -39,7 +42,9 @@ module.exports = messageCtrlTest({
 
         // Subject to change, but expect 3
         test.equal(message.attachments[0].fields.length, 3);
-
+        test.equal(message.attachments[0].fields[0].value, "name, sections, morefield, moorestuff, moreRandomFields");
+        test.equal(message.attachments[0].fields[1].value, "2015-11-14 8:41 AM UTC");
+        test.equal(message.attachments[0].fields[2].value, "Link");
         test.equal(message.attachments[0].title_link, "https://app.contentful.com/spaces/test/entries/6aFz3qcuPe0eA8kwQm0U-test");
         test.equal(message.attachments[0].title, "Test Title");
         test.done();
