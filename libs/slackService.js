@@ -6,10 +6,10 @@ var config = require('./config');
 module.exports = (function () {
     var slack;
 
-    if (typeof config.webhook !== 'undefined') {
-        slack = new Slack(config.webhook);
+    if (typeof config.webhook === 'undefined') {
+        console.log('Please ensure webhook is properly set up');
     } else {
-        console.log("Please ensure webhook is properly set up");
+        slack = new Slack(config.webhook);
     }
 
     /**

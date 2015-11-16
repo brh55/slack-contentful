@@ -1,4 +1,5 @@
 'use strict';
+/* eslint camelcase:0 */
 
 var util = require('./util');
 var config = require('./config');
@@ -16,17 +17,17 @@ module.exports = (function () {
             link_names: 1
         },
         attachmentObj: {
-            "fallback": "",
-            "color": config.updateColor,
-            "title": "",
-            "title_link": "",
-            "text": "",
-            "fields": []
+            fallback: '',
+            color: config.updateColor,
+            title: '',
+            title_link: '',
+            text: '',
+            fields: []
         },
         shortField: {
-            "title": "",
-            "value": "",
-            "short": true
+            title: '',
+            value: '',
+            short: true
         }
     };
 
@@ -40,7 +41,7 @@ module.exports = (function () {
             var attachment = [];
             var attachmentObj = model.attachmentObj;
 
-            attachmentObj.fallback = "Changes done to entry: " + reqBody.fields.name['en-US'];
+            attachmentObj.fallback = 'Changes done to entry: ' + reqBody.fields.name['en-US'];
             attachmentObj.title = reqBody.fields.name['en-US'];
             attachmentObj.title_link = action.buildEntryUrl(reqBody.sys.space.sys.id, reqBody.sys.id);
 
@@ -50,10 +51,9 @@ module.exports = (function () {
             var keyString = keys.toString();
             keyString = keyString.replace(/,/g, ', ');
 
-            var firstFieldText = reqBody.fields[keys[1]]['en-US'];
             attachmentObj.text = reqBody.sys.type;
 
-            var fieldsField = action.buildField("Fields", keyString, false);
+            var fieldsField = action.buildField('Fields', keyString, false);
             var dateField = action.buildDateField(reqBody.sys.updatedAt);
             var entryField = action.buildEntryField(reqBody.sys.contentType.sys.type);
 
@@ -84,7 +84,7 @@ module.exports = (function () {
         buildDateField: function (ISODate) {
             var dateField = nodeUtil._extend({}, model.shortField);
 
-            dateField.title = "Updated At";
+            dateField.title = 'Updated At';
             dateField.value = util.formatDate(ISODate);
 
             return dateField;
@@ -98,7 +98,7 @@ module.exports = (function () {
         buildEntryField: function (entryType) {
             var entryField = nodeUtil._extend({}, model.shortField);
 
-            entryField.title = "Type"
+            entryField.title = 'Type';
             entryField.value = entryType;
 
             return entryField;
@@ -114,7 +114,7 @@ module.exports = (function () {
         buildField: function (title, value, shortBool) {
             var field = nodeUtil._extend({}, model.shortField);
 
-            field.short = (shortBool === true) ? true : false;
+            field.short = (shortBool === true);
             field.title = title;
             field.value = value;
 

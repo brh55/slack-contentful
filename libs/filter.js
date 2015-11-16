@@ -21,7 +21,7 @@ module.exports = (function () {
                 var formatString = model.entryString.replace(' ', '');
                 model.entryList = formatString.split(',');
             } else {
-                console.log("No proper entries declared in .env file");
+                console.log('No proper entries declared in .env file');
             }
 
             return model.entryList;
@@ -55,9 +55,9 @@ module.exports = (function () {
 
             if (entryList.indexOf(entryId) > -1) {
                 return true;
-            } else {
-                return false;
             }
+
+            return false;
         }
     };
 

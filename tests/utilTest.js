@@ -11,15 +11,15 @@ var undefMockObj = {
 };
 
 var defMockObj = {
-    testProp: "randomstring",
+    testProp: 'randomstring',
     testPropFun: function () {
         return;
     },
-    testProp2: "moreString"
+    testProp2: 'moreString'
 };
 
 module.exports = utilTest({
-    "allDefined": function (test) {
+    allDefined: function (test) {
         var expectFalse = util.allDefined(undefMockObj);
         var expectTrue = util.allDefined(defMockObj);
 
@@ -27,17 +27,17 @@ module.exports = utilTest({
         test.equal(expectTrue, true);
         test.done();
     },
-    "formatDate": function (test) {
-        var mockDate = "2015-08-26T02:59:44.988Z";
+    formatDate: function (test) {
+        var mockDate = '2015-08-26T02:59:44.988Z';
         var formattedDate = util.formatDate(mockDate);
 
-        test.equal(formattedDate, "2015-08-26 8:59 AM UTC");
+        test.equal(formattedDate, '2015-08-26 8:59 AM UTC');
         test.done();
     },
-    "getUndefinedKeys": function (test) {
-        var testList = util.getUndefinedKeys(undefMockObj, "+");
+    getUndefinedKeys: function (test) {
+        var testList = util.getUndefinedKeys(undefMockObj, '+');
 
-        test.equal(testList, "testProp1+testProp5+testProp6+testProp7");
+        test.equal(testList, 'testProp1+testProp5+testProp6+testProp7');
         test.done();
     }
 });

@@ -1,8 +1,5 @@
 'use strict';
 
-var config = require('./config');
-var filter = require('./filter');
-
 module.exports = (function () {
     var action = {
         /**
@@ -10,7 +7,7 @@ module.exports = (function () {
          * @param  {[string]} ISODate [ISODate format]
          * @return {[string]}         [returns in format of: MonthDate, Hour:Mins PM / AM]
          */
-        formatDate: function(ISODate) {
+        formatDate: function (ISODate) {
             var tempDate = ISODate.replace(/T/, ' ').replace(/\..+/, '');
             var dateSplit = tempDate.split(' ');
 
@@ -20,7 +17,6 @@ module.exports = (function () {
 
             var hour = timeSplit[0];
             var mins = timeSplit[1];
-            var seconds = timeSplit[2];
 
             // Format into 12 hour format
             var hours = ((hour + 11) % 12 + 1);
@@ -66,5 +62,5 @@ module.exports = (function () {
         formatDate: action.formatDate,
         allDefined: action.allDefined,
         getUndefinedKeys: action.getUndefinedKeys
-    }
+    };
 })();
