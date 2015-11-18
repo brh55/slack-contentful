@@ -1,5 +1,7 @@
 'use strict';
 
+var nodeUtil = require('util');
+
 module.exports = (function () {
     var action = {
         /**
@@ -34,7 +36,7 @@ module.exports = (function () {
          */
         allDefined: function (object) {
             for (var key in object) {
-                if (typeof object[key] === 'undefined') {
+                if (nodeUtil.isUndefined(object[key])) {
                     return false;
                 }
             }
@@ -49,7 +51,7 @@ module.exports = (function () {
         getUndefinedKeys: function (object, formatSeparator) {
             var undefKeys = [];
             for (var key in object) {
-                if (typeof object[key] === 'undefined') {
+                if (nodeUtil.isUndefined(object[key])) {
                     undefKeys.push(key);
                 }
             }

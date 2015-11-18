@@ -1,6 +1,8 @@
 'use strict';
 
 var dotenv = require('dotenv');
+var nodeUtil = require('util');
+
 dotenv.load();
 
 // Declare Contentful entries of what you want to be notified of
@@ -32,7 +34,7 @@ module.exports = (function () {
          * @return {Boolean} [Indication of Entries defined]
          */
         isEntryDefined: function () {
-            return (typeof model.entryString !== 'undefined');
+            return (!nodeUtil.isUndefined(model.entryString));
         },
 
         /**
