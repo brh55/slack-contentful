@@ -18,7 +18,7 @@ module.exports = (function () {
          */
         getEntries: function () {
             if (action.isEntryDefined()) {
-                var formatString = model.entryString.replace(' ', '');
+                var formatString = model.entryString.replace(/\040/g, '');
                 model.entryList = formatString.split(',');
             } else {
                 console.log('No proper entries declared in .env file');
