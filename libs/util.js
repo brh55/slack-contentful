@@ -6,8 +6,8 @@ module.exports = (function () {
     var action = {
         /**
          * Format date of ISO Date
-         * @param  {[string]} ISODate [ISODate format]
-         * @return {[string]}         [returns in format of: MonthDate, Hour:Mins PM / AM]
+         * @param  {string} ISODate ISODate format
+         * @return {string}         returns in format of: MonthDate, Hour:Mins PM / AM
          */
         formatDate: function (ISODate) {
             var tempDate = ISODate.replace(/T/, ' ').replace(/\..+/, '');
@@ -31,8 +31,8 @@ module.exports = (function () {
 
         /**
          * Checks if all keys do not have undefined values string values
-         * @param  {[object]} object [object in question]
-         * @return {[boolean]}        [return if object contains undefined string values]
+         * @param  {object} object object in question
+         * @return {boolean}        return if object contains undefined string values
          */
         allDefined: function (object) {
             for (var key in object) {
@@ -45,8 +45,8 @@ module.exports = (function () {
 
         /**
          * Return undefined keys of object
-         * @param  {[object]} object [object in question]
-         * @return {[string]}        [string of undefined valued keys]
+         * @param  {object} object object in question
+         * @return {string}        string of undefined valued keys
          */
         getUndefinedKeys: function (object, formatSeparator) {
             var undefKeys = [];

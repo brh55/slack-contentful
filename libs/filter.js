@@ -15,8 +15,8 @@ module.exports = (function () {
     var action = {
         /**
          * Gets user defined entry list and returns it into an array
-         * @param  {[string]} entries [string of entries]
-         * @return {[array]}         [array of Entries]
+         * @param  {string} entries string of entries
+         * @return {array}         array of Entries
          */
         getEntries: function () {
             if (action.isEntryDefined()) {
@@ -31,7 +31,7 @@ module.exports = (function () {
 
         /**
          * Determines if user has defined .env ENTRIES
-         * @return {Boolean} [Indication of Entries defined]
+         * @return {boolean} [Indication of Entries defined]
          */
         isEntryDefined: function () {
             return (!nodeUtil.isUndefined(model.entryString));
@@ -39,7 +39,7 @@ module.exports = (function () {
 
         /**
          * Returns entry string as defined by user
-         * @return {[string]} [String containing Entries]
+         * @return {string} String containing Entries
          */
         getEntryString: function () {
             if (action.isEntryDefined()) {
@@ -49,8 +49,8 @@ module.exports = (function () {
 
         /**
          * Compare incoming hook entry against entry list
-         * @param  {[string]} entryId [entryId in question]
-         * @return {[boolean]}         [return if entry should be notified or not]
+         * @param  {string} entryId entryId in question
+         * @return {boolean}         return if entry should be notified or not
          */
         checkEntry: function (entryId) {
             var entryList = action.getEntries();

@@ -15,7 +15,7 @@ module.exports = (function () {
 
     /**
      * Slack Wrapper to send Slack message
-     * @param  {[object]} message [object message to be send]
+     * @param  {object} message object message to be send
      */
     var sendMessage = function (message) {
         slack.send(message);

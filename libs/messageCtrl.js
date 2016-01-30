@@ -34,8 +34,8 @@ module.exports = (function () {
     var action = {
        /**
          * Build message attachment to provide to slack
-         * @param  {[string]} message [string]
-         * @return {[array]}         [attachment array containing message]
+         * @param  {string} message string
+         * @return {array}         attachment array containing message
          */
         buildAttachment: function (reqBody) {
             var attachment = [];
@@ -68,9 +68,9 @@ module.exports = (function () {
 
         /**
          * Build associated contentful Url for Entry
-         * @param  {[string]} spaceId [Id of Contentful Space]
-         * @param  {[string]} entryId [Id of Contentful Entry]
-         * @return {[string]}         [Url of Entry]
+         * @param  {string} spaceId Id of Contentful Space
+         * @param  {string} entryId Id of Contentful Entry
+         * @return {string}         Url of Entry
          */
         buildEntryUrl: function (spaceId, entryId) {
             return 'https://app.contentful.com/spaces/' + spaceId + '/entries/' + entryId;
@@ -78,8 +78,8 @@ module.exports = (function () {
 
         /**
          * Builds a Date Short Field Object
-         * @param  {[string]} ISODate [ISO Format of date]
-         * @return {[object]}      [Short field declaring date of update]
+         * @param  {string} ISODate ISO Format of date
+         * @return {object}      Short field declaring date of update
          */
         buildDateField: function (ISODate) {
             var dateField = nodeUtil._extend({}, model.shortField);
@@ -92,8 +92,8 @@ module.exports = (function () {
 
         /**
          * Builds a Entry Short Field Object
-         * @param  {[string]} entryType [Type of Contentful Entry]
-         * @return {[object]}           [Short field declaring type of entry]
+         * @param  {string} entryType Type of Contentful Entry
+         * @return {object}           Short field declaring type of entry
          */
         buildEntryField: function (entryType) {
             var entryField = nodeUtil._extend({}, model.shortField);
@@ -106,10 +106,10 @@ module.exports = (function () {
 
         /**
          * Build a generic field short or long
-         * @param  {[string]} title     [The title of the short field]
-         * @param  {[string]} value     [value with the shortField]
-         * @param  {[boolean]} shortBool [shortField boolean]
-         * @return {[type]}           [description]
+         * @param  {string} title     The title of the short field
+         * @param  {string} value     value with the shortField
+         * @param  {boolean} shortBool shortField boolean
+         * @return {type}           description
          */
         buildField: function (title, value, shortBool) {
             var field = nodeUtil._extend({}, model.shortField);
@@ -123,8 +123,8 @@ module.exports = (function () {
 
         /**
          * Builds Payload to be sent to Slack hook
-         * @param  {[object]} reqBody [JSON of request body]
-         * @return {[object]}         [prase message based on JSON request body]
+         * @param  {object} reqBody JSON of request body
+         * @return {object}         prase message based on JSON request body
          */
         buildMessage: function (reqBody) {
             var attachment = action.buildAttachment(reqBody);
