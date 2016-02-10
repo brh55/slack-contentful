@@ -46,7 +46,7 @@ app.get('/check', function (req, res) {
     if (util.allDefined(config)) {
         var entries = filter.getEntryString();
         var htmlString = '<h1>Successful Set-up</h1><h3>Please verify settings below</h3>';
-        htmlString += '<table><tr><td>Channel</td><td>Bot Username</td><td>Entries Tracked</td></tr><tr><td>' + config.channel + '</td><td>' + config.username + '</td><td>' + entries + '</td></tr></table>';
+        htmlString += '<table style="border: 1px solid; font-family: arial;"><tr style="background: #92cbdc"><td style="padding: 10px;">Channel</td><td style="padding: 10px;">Bot Username</td><td style="padding: 10px;">Entries Tracked</td><td style="padding: 10px;">Contentful Locale</td></tr><tr><td style="padding: 10px;">' + config.channel + '</td><td style="padding: 10px;">' + config.username + '</td><td style="padding: 10px;">' + entries + '</td><td style="padding: 10px;">' + config.locale + '</td></tr></table>';
         res.send(htmlString);
     } else {
         var undefConfigs = util.getUndefinedKeys(config, ', ');

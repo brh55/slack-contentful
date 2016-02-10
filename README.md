@@ -1,11 +1,15 @@
 # Slack Contentful  ![Slack Icon](http://dist.alternativeto.net/icons/slack_59044.png?width=50&height=50&mode=crop&anchor=middlecenter)   ![Contentful Icon](https://lh5.googleusercontent.com/SiTAEkDd09U_7ngpQgCzQq4LXL-1876MnOr0AdCofQ0-l5TCWIUXRGviAQlAABj6h9bB6WLE=s50-h50-e365)
 
-![Version 0.1.5](https://img.shields.io/badge/version-0.1.5-yellow.svg)
+![Version 0.2.0](https://img.shields.io/badge/version-0.1.5-blue.svg)
 [![Build Status](https://travis-ci.org/brh55/slack-contentful.svg?branch=master)](https://travis-ci.org/brh55/slack-contentful) [![devDendencies Status](https://david-dm.org/brh55/slack-contentful/dev-status.svg)](https://david-dm.org/brh55/slack-contentful#info=Dependencies) [![Coverage Status](https://coveralls.io/repos/brh55/slack-contentful/badge.svg?branch=master&service=github)](https://coveralls.io/github/brh55/slack-contentful?branch=master) [![Support via Gratipay](http://img.shields.io/gratipay/brh55.svg?style=flat-square)](https://gratipay.com/brh55)
 
-This node instance allow users to set up notifications "on published" changes to specified Contentful entries to a designated Slack channel.
+This Slack bot will allow users to set up notifications "on published" changes to specified Contentful entries and assets to a designated Slack channel.
 
-![Example Image](http://s28.postimg.org/oycfdlzz1/Screen_Shot_2015_11_16_at_8_14_10_AM.png)
+### Entry Update
+![Example Entry Update](http://s28.postimg.org/oycfdlzz1/Screen_Shot_2015_11_16_at_8_14_10_AM.png)
+
+### Asset Update
+![Example Asset Update](https://cloud.githubusercontent.com/assets/6020066/12939831/c7da36c0-cf91-11e5-8bb8-a6f8cc5f04a6.png)
 
 ## Requirements
 
@@ -16,7 +20,7 @@ This node instance allow users to set up notifications "on published" changes to
 ## Automated Set Up with Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-At minimum you need to configure your Slack webhook and tracked entries.
+At minimum you need to configure your Slack webhook and tracked entries. It's preferred to set your locale, and leave your bot's emojis and username blank as these can be edit through the "Incoming Hooks" page by other team members.
 
 ## Manual Set Up
 
@@ -27,22 +31,40 @@ Current possible configurations:
 
 __example.env__
 ```
-#REQUIRED VALUE, HOOK is available on Slack Integration Page
+# The slack incoming webhook url. This is from the integrations page
+# HOOK is available on Slack Integration Page
+# REQUIRED
 SLACK_WEBHOOK = https://hooks.slack.com/services/.../.../...
+
+# The slack channel to send notifications to (Do not ad #). NOTE: Setting this will override integration settings
+# REQUIRED
 SLACK_CHANNEL = ChannelHere
 
-#ENTRIES, list all entries to be tracked in a comma seperated format
-ENTRIES= entryID1, entryID2, etc, etc
+# Comma seperated list of Contentful Entry IDs you want to be notified of
+# REQUIRED
+ENTRIES = 6OFbybzxM4WOCuIO4qo8Qs, 6aFz3qcuPe0eA8kwQm0Ume, entryID3, etc
 
-#The following values are optional, but the app will take the defaults as specified below
+# Default Contentful Localization/translation: Default - en-US
+# OPTIONAL - BUT PREFERRED
+LOCALE = en-US
+
+# The following values listed below are OPTIONAL, but the app will take the defaults as specified below
+# A Specified port for the bot to run on
 PORT = 5000
+
+# Hex value for updates posted to Slack
+UPDATE_COLOR = #27ae60
+
+# NOTE: Setting this will override integration settings on Incoming Hooks page
+#       if you would prefer to have it be managed through other Slack members,
+#       then leave these values blank and edit it through the portal.
+
+# The slack bot's username.
 BOT_USERNAME = ContentfulUpdates
 
-#Emoji is used for an Bot's user icon, you can upload one on your team's channel and declare it here
+# The name of any available custom or default Emoji to be used for the bot icon
 BOT_EMOJI = pencil2
 
-#HEX Color of update notification
-UPDATE_COLOR = "#27ae60"
 ```
 
 ## Deploying Steps
@@ -74,19 +96,20 @@ UPDATE_COLOR = "#27ae60"
 And you're all set!
 
 ## Post Deployment - Test
-
-After your app has deployed, go to your server url and go to the `/check` endpoint.
+After your app has deployed, go to your server url and go to the `/check` endpoint to verify your settings, and help with debugging any potential issues.
 
 Example:
 ```
 http://myherokuapp.heroku.com/check
 ```
 
+!(check page)[https://cloud.githubusercontent.com/assets/6020066/12940014/3539a25e-cf93-11e5-8ad2-804c00fe3d95.png]
+
 If you've successfully deployed, you should get a successful message stating *Successful Set-up* along with a table of configurations to verify against.
 
 If set up was unsuccessful, you should get a message to verify your configurations, along with important configurations that the server has set up.
 
 ## Contribute
-A bulk of the project can be refactored quite a bit. Thus, if you are more than welcome to submit any issues and feature request to the issues section of the repo. I'm no means a expert in Node, so feel free to submit PR for refactors, typos, features, README clarity, etc. All I ask is maintain the code style in place, and keep the code clean.
+I am taking PR's, just make a PR and reference the ticket, or explain your update. If it's suitable, I'll go ahead and merge it.
 
 

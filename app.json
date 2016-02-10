@@ -24,6 +24,11 @@
       "description": "Comma seperated list of Contentful Entry IDs you want to be notified of",
       "required": true
     },
+    "LOCALE": {
+      "description": "Contentful default Locale to serve as primary source of updates",
+      "value": "en-US",
+      "required": true
+    }
     "BOT_USERNAME": {
       "description": "The slack bot's username. NOTE: Setting this will override integration settings",
       "value": "Contentful-Update",
