@@ -32,7 +32,7 @@ The configuration of the bot are set with environment variables using an `.env` 
  ENV Variable | Required | Description | Default Value 
 ------------ | ------------- | ------------- | -------------
 SLACK_WEBHOOK | Y |The webhook Url provided by the incoming hooks | N/A 
-SLACK_CHANNEL | Y |The slack channel to send notifications (without #) | N/A 
+SLACK_CHANNEL | Y |The slack channel to send notifications | N/A 
 ENTRIES | Y | A comma seperated list of Contentful Entry IDs you want to be notified of | N/A 
 LOCALE | N (but preferred) | Contentful Locale to be tracked, currently only supports up to 1 | en-US 
 PORT  | N | The port for the node server to run on | 5000 
@@ -44,7 +44,7 @@ Here's an example, of how your .env would look like.
 __.env__
 ```
 SLACK_WEBHOOK = https://hooks.slack.com/services/TA123ka9/A123910a9d8/mkas929199sad83lmk7h
-SLACK_CHANNEL = ContentfulFeed
+SLACK_CHANNEL = #ContentfulFeed
 ENTRIES = 6OFbybzxM4WOCuIO4qo8Qs, 6aFz3qcuPe0eA8kwQm0Ume, 6a232jal2eA8kwQm0Ume, etc
 LOCALE = en-UK
 PORT = 5000
