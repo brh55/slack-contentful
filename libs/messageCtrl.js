@@ -83,7 +83,6 @@ module.exports = (function () {
                 attachmentObj.fields.push(sizeField);
             }
 
-            console.log(attachmentObj);
             attachment.push(attachmentObj);
 
             return attachment;
