@@ -32,8 +32,8 @@ The configuration of the bot are set with environment variables using an `.env` 
  ENV Variable | Required | Description | Default Value 
 ------------ | ------------- | ------------- | -------------
 SLACK_WEBHOOK | Y |The webhook Url provided by the incoming hooks | N/A 
-SLACK_CHANNEL | Y |The slack channel to send notifications (without #) | contentful-updates 
-ENTRIES | Y | A comma seperated list of Contentful Entry IDs you want to be notified of | Empty 
+SLACK_CHANNEL | Y |The slack channel to send notifications (without #) | N/A 
+ENTRIES | Y | A comma seperated list of Contentful Entry IDs you want to be notified of | N/A 
 LOCALE | N (but preferred) | Contentful Locale to be tracked, currently only supports up to 1 | en-US 
 PORT  | N | The port for the node server to run on | 5000 
 UPDATE_COLOR | N  | Hex color for updates posted | #27ae60 
