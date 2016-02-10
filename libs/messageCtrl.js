@@ -42,9 +42,8 @@ module.exports = (function () {
             var attachmentObj = model.attachmentObj;
 
             // TODO: Add localization
-            var updateTitle = (nodeUtil.isUndefined(reqBody.fields.name))
-                 ? reqBody.fields.title[config.locale]
-                 : reqBody.fields.name[config.locale];
+            var updateTitle = (nodeUtil.isUndefined(reqBody.fields.name)) ?
+                reqBody.fields.title[config.locale] : reqBody.fields.name[config.locale];
 
             attachmentObj.fallback = 'Changes done to entry: ' + updateTitle;
             attachmentObj.title = updateTitle;
@@ -72,7 +71,7 @@ module.exports = (function () {
                 var imgUnits = ' KBs';
 
                 if (imgSize > 1000) {
-                    imgSize = imgSize / 1000;
+                    imgSize /= 1000;
                     imgUnits = ' MBs';
                 }
 
@@ -156,7 +155,7 @@ module.exports = (function () {
 
             message.attachments = attachment;
             return message;
-        },
+        }
     };
 
     return {

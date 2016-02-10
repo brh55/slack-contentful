@@ -40,9 +40,8 @@ module.exports = (function () {
          * @return {string} String containing Entries, empty string if empty
          */
         getEntryString: function () {
-            return (action.isEntryDefined())
-                ? model.entryString
-                : '';
+            return (action.isEntryDefined()) ?
+                model.entryString : '';
         },
 
         /**
