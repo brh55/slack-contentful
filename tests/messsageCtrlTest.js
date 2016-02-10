@@ -44,7 +44,7 @@ module.exports = messageCtrlTest({
         test.equal(message.attachments[0].fields.length, 3);
         test.equal(message.attachments[0].fields[0].value, 'name, sections, morefield, moorestuff, moreRandomFields');
         test.equal(message.attachments[0].fields[1].value, '2015-11-14 8:41 AM UTC');
-        test.equal(message.attachments[0].fields[2].value, 'Link');
+        test.equal(message.attachments[0].fields[2].value, 'Entry');
         test.equal(message.attachments[0].title_link, 'https://app.contentful.com/spaces/test/entries/6aFz3qcuPe0eA8kwQm0U-test');
         test.equal(message.attachments[0].title, 'Test Title');
         test.done();
