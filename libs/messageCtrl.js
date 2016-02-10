@@ -8,7 +8,7 @@ var nodeUtil = require('util');
 module.exports = (function () {
     var model = {
         message: {
-            text: 'Contentful Entry Changes:',
+            text: 'Contentful Update',
             channel: config.channel,
             username: config.username,
             icon_emoji: config.emoji,
@@ -41,8 +41,13 @@ module.exports = (function () {
             var attachment = [];
             var attachmentObj = model.attachmentObj;
 
-            attachmentObj.fallback = 'Changes done to entry: ' + reqBody.fields.name['en-US'];
-            attachmentObj.title = reqBody.fields.name['en-US'];
+            // TODO: Add localization
+            var updateTitle = (nodeUtil.isUndefined(reqBody.fields.name))
+                 ? reqBody.fields.title[config.locale]
+                 : reqBody.fields.name[config.locale];
+
+            attachmentObj.fallback = 'Changes done to entry: ' + updateTitle;
+            attachmentObj.title = updateTitle;
             attachmentObj.title_link = action.buildEntryUrl(reqBody.sys.space.sys.id, reqBody.sys.id);
 
             // TODO: See if particular field changes are given in the payload,
@@ -51,16 +56,35 @@ module.exports = (function () {
             var keyString = keys.toString();
             keyString = keyString.replace(/,/g, ', ');
 
-            attachmentObj.text = reqBody.sys.type;
+            attachmentObj.text = '';
 
             var fieldsField = action.buildField('Fields', keyString, false);
             var dateField = action.buildDateField(reqBody.sys.updatedAt);
-            var entryField = action.buildEntryField(reqBody.sys.contentType.sys.type);
+            var entryField = action.buildEntryField(reqBody.sys.type);
 
             attachmentObj.fields.push(fieldsField);
             attachmentObj.fields.push(dateField);
             attachmentObj.fields.push(entryField);
 
+            if (reqBody.sys.type === 'Asset') {
+                attachmentObj.thumb_url = 'http:' + reqBody.fields.file[config.locale].url;
+                var imgSize = reqBody.fields.file[config.locale].details.size * 0.001;
+                var imgUnits = ' KBs';
+
+                if (imgSize > 1000) {
+                    imgSize = imgSize / 1000;
+                    imgUnits = ' MBs';
+                }
+
+                var sizeField = action.buildField('Size', imgSize + imgUnits, true);
+
+                var imgType = action.buildField('Asset Type', reqBody.fields.file[config.locale].contentType, true);
+
+                attachmentObj.fields.push(imgType);
+                attachmentObj.fields.push(sizeField);
+            }
+
+            console.log(attachmentObj);
             attachment.push(attachmentObj);
 
             return attachment;
@@ -132,7 +156,7 @@ module.exports = (function () {
 
             message.attachments = attachment;
             return message;
-        }
+        },
     };
 
     return {

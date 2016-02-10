@@ -10,5 +10,7 @@ module.exports = {
     emoji: process.env.BOT_EMOJI || 'pencil2',
     username: process.env.BOT_USERNAME || 'Contentful Update',
     channel: '#' + process.env.SLACK_CHANNEL || '#contentful-updates',
-    updateColor: process.env.UPDATE_COLOR || '#27ae60'
+    updateColor: process.env.UPDATE_COLOR || '#27ae60',
+    entries: process.env.ENTRIES || '',
+    locale: process.env.LOCALE || 'en-US'
 };

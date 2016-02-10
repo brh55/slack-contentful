@@ -2,7 +2,7 @@
   "name": "slack-contentful",
   "version": "0.0.1",
   "description": "Slack notifications for a specified entry",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "xo && nodeunit tests",
     "start": "node server.js"

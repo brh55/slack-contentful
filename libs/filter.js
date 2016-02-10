@@ -1,15 +1,13 @@
 'use strict';
 
-var dotenv = require('dotenv');
+var config = require('./config');
 var nodeUtil = require('util');
-
-dotenv.load();
 
 // Declare Contentful entries of what you want to be notified of
 module.exports = (function () {
     var model = {
         entryList: [],
-        entryString: process.env.ENTRIES
+        entryString: config.entries
     };
 
     var action = {
@@ -39,12 +37,10 @@ module.exports = (function () {
 
         /**
          * Returns entry string as defined by user
-         * @return {string} String containing Entries
+         * @return {string} String containing Entries, empty string if empty
          */
         getEntryString: function () {
-            if (action.isEntryDefined()) {
-                return model.entryString;
-            }
+            return (action.isEntryDefined()) ? model.entryString : '';
         },
 
         /**
@@ -54,12 +50,7 @@ module.exports = (function () {
          */
         checkEntry: function (entryId) {
             var entryList = action.getEntries();
-
-            if (entryList.indexOf(entryId) > -1) {
-                return true;
-            }
-
-            return false;
+            return (entryList.indexOf(entryId) > -1);
         }
     };
 

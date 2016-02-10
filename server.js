@@ -28,7 +28,8 @@ app.post('/', jsonParser, function (req, res) {
     var correctEntry = filter.checkEntry(req.body.sys.id);
 
     // check for publish notifications
-    if (req.rawHeaders.indexOf('ContentManagement.Entry.publish') > -1 &&
+    if (req.rawHeaders.indexOf('ContentManagement.Entry.publish') > -1 ||
+            req.rawHeaders.indexOf('ContentManagement.Asset.publish') > -1 &&
             correctEntry) {
         var key = req.body.sys.id;
 
