@@ -17,7 +17,7 @@ This Slack bot will allow users to set up notifications "on published" changes t
   * [Node.js](http://nodejs.org/)
   * [Contentful](http://contentful.com) Access to add outgoing hooks
 
-## Automated Set Up with Heroku
+## Automated Set Up With Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 At minimum you need to configure your Slack webhook and tracked entries. It's preferred to set your locale, and leave your bot's emojis and username blank as these can be edit through the "Incoming Hooks" page by other team members.
@@ -27,44 +27,30 @@ At minimum you need to configure your Slack webhook and tracked entries. It's pr
 ### Configuration
 The configuration of the bot are set with environment variables using an `.env` file. Please look at the `example.env` file of possible configurations, and create an updated `.env` file before you deploy.
 
-Current possible configurations:
+**Available Configuration Options:**
+ 
+ ENV Variable | Required | Description | Default Value 
+------------ | ------------- | ------------- | -------------
+SLACK_WEBHOOK | Y |The webhook Url provided by the incoming hooks | N/A 
+SLACK_CHANNEL | Y |The slack channel to send notifications (without #) | contentful-updates 
+ENTRIES | Y | A comma seperated list of Contentful Entry IDs you want to be notified of | Empty 
+LOCALE | N (but preferred) | Contentful Locale to be tracked, currently only supports up to 1 | en-US 
+PORT  | N | The port for the node server to run on | 5000 
+UPDATE_COLOR | N  | Hex color for updates posted | #27ae60 
+BOT_USERNAME | N | The bot's username | Contentful Updates 
+BOT_EMOJI | N | The bot's icon | pencil2 
 
-__example.env__
+Here's an example, of how your .env would look like.
+__.env__
 ```
-# The slack incoming webhook url. This is from the integrations page
-# HOOK is available on Slack Integration Page
-# REQUIRED
-SLACK_WEBHOOK = https://hooks.slack.com/services/.../.../...
-
-# The slack channel to send notifications to (Do not ad #). NOTE: Setting this will override integration settings
-# REQUIRED
-SLACK_CHANNEL = ChannelHere
-
-# Comma seperated list of Contentful Entry IDs you want to be notified of
-# REQUIRED
-ENTRIES = 6OFbybzxM4WOCuIO4qo8Qs, 6aFz3qcuPe0eA8kwQm0Ume, entryID3, etc
-
-# Default Contentful Localization/translation: Default - en-US
-# OPTIONAL - BUT PREFERRED
-LOCALE = en-US
-
-# The following values listed below are OPTIONAL, but the app will take the defaults as specified below
-# A Specified port for the bot to run on
+SLACK_WEBHOOK = https://hooks.slack.com/services/TA123ka9/A123910a9d8/mkas929199sad83lmk7h
+SLACK_CHANNEL = ContentfulFeed
+ENTRIES = 6OFbybzxM4WOCuIO4qo8Qs, 6aFz3qcuPe0eA8kwQm0Ume, 6a232jal2eA8kwQm0Ume, etc
+LOCALE = en-UK
 PORT = 5000
-
-# Hex value for updates posted to Slack
 UPDATE_COLOR = #27ae60
-
-# NOTE: Setting this will override integration settings on Incoming Hooks page
-#       if you would prefer to have it be managed through other Slack members,
-#       then leave these values blank and edit it through the portal.
-
-# The slack bot's username.
 BOT_USERNAME = ContentfulUpdates
-
-# The name of any available custom or default Emoji to be used for the bot icon
-BOT_EMOJI = pencil2
-
+BOT_EMOJI = bomb
 ```
 
 ## Deploying Steps
@@ -85,7 +71,7 @@ BOT_EMOJI = pencil2
   $ npm start
   ```
 
-## Contentful Set Up
+## Contentful Configuration
 
 1. Go to [Contentful](https://contentful.com).
 2. Login with your credentials.
@@ -93,9 +79,7 @@ BOT_EMOJI = pencil2
 4. Hit 'New Webhook', and enter your server address in the URL bar.
 5. Click 'Create Webhook'.
 
-And you're all set!
-
-## Post Deployment - Test
+## Post Deployment - Test & Debugging
 After your app has deployed, go to your server url and go to the `/check` endpoint to verify your settings, and help with debugging any potential issues.
 
 Example:
@@ -103,13 +87,11 @@ Example:
 http://myherokuapp.heroku.com/check
 ```
 
-![check page](https://cloud.githubusercontent.com/assets/6020066/12940014/3539a25e-cf93-11e5-8ad2-804c00fe3d95.png)
+If you've successfully deployed, you should get a successful message stating *Successful Set-up* along with a table of configurations to verify against as depicted below.
 
-If you've successfully deployed, you should get a successful message stating *Successful Set-up* along with a table of configurations to verify against.
+![check page](https://cloud.githubusercontent.com/assets/6020066/12940014/3539a25e-cf93-11e5-8ad2-804c00fe3d95.png)
 
 If set up was unsuccessful, you should get a message to verify your configurations, along with important configurations that the server has set up.
 
 ## Contribute
-I am taking PR's, just make a PR and reference the ticket, or explain your update. If it's suitable, I'll go ahead and merge it.
-
-
+Open to all PRs, just make a PR and reference the issue if applicable, or explain your in the PR. If it's suitable, I'll go ahead and merge it.
