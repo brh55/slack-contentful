@@ -46,7 +46,7 @@ __.env__
 ```
 SLACK_WEBHOOK = https://hooks.slack.com/services/TA123ka9/A123910a9d8/mkas929199sad83lmk7h
 SLACK_CHANNEL = #ContentfulFeed
-ENTRIES = 6OFbybzxM4WOCuIO4qo8Qs, 6aFz3qcuPe0eA8kwQm0Ume, 6a232jal2eA8kwQm0Ume, etc
+ENTRIES = 6OFbybzxM4WOCuIO4qo8Qs,6aFz3qcuPe0eA8kwQm0Ume,6a232jal2eA8kwQm0Ume,etc
 LOCALE = en-UK
 PORT = 5000
 UPDATE_COLOR = #27ae60
@@ -91,9 +91,11 @@ http://myherokuapp.heroku.com/check
 
 If you've successfully deployed, you should get a successful message stating *Successful Set-up* along with a table of configurations to verify against as depicted below.
 
-![check page](https://cloud.githubusercontent.com/assets/6020066/12940014/3539a25e-cf93-11e5-8ad2-804c00fe3d95.png)
+![successful set up](https://cloud.githubusercontent.com/assets/6020066/12940014/3539a25e-cf93-11e5-8ad2-804c00fe3d95.png)
 
 If set up was unsuccessful, you should get a message to verify your configurations, along with important configurations that the server has set up.
+
+![unsuccessful set up](https://cloud.githubusercontent.com/assets/6020066/13012522/3cf0076a-d171-11e5-96ed-3b1172e0f97a.png)
 
 ## Contribute
 Open to all PRs, just make a PR and reference the issue if applicable, or explain your in the PR. If it's suitable, I'll go ahead and merge it.
