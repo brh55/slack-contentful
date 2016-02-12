@@ -2,8 +2,8 @@
 /* eslint camelcase:0 */
 
 var util = require('./util');
-var config = require('./config');
 var nodeUtil = require('util');
+var config = require('./config');
 
 module.exports = (function () {
     var model = {
@@ -40,6 +40,8 @@ module.exports = (function () {
         buildAttachment: function (reqBody) {
             var attachment = [];
             var attachmentObj = model.attachmentObj;
+            // Clear array from object
+            attachmentObj.fields.length = 0;
 
             // TODO: Add localization
             var updateTitle = (nodeUtil.isUndefined(reqBody.fields.name)) ?
@@ -66,17 +68,16 @@ module.exports = (function () {
             attachmentObj.fields.push(entryField);
 
             if (reqBody.sys.type === 'Asset') {
-                attachmentObj.thumb_url = 'http:' + reqBody.fields.file[config.locale].url;
-                var imgSize = reqBody.fields.file[config.locale].details.size * 0.001;
-                var imgUnits = ' KBs';
-
-                if (imgSize > 1000) {
-                    imgSize /= 1000;
-                    imgUnits = ' MBs';
+                // Set large preview if set
+                if (config.largePreview) {
+                    attachmentObj.image_Url = action.buildImgUrl(reqBody);
+                } else {
+                    attachmentObj.thumb_url = action.buildImgUrl(reqBody);
                 }
 
-                var sizeField = action.buildField('Size', imgSize + imgUnits, true);
+                var imgSize = action.formatSizeUnit(reqBody.fields.file[config.locale].details.size);
 
+                var sizeField = action.buildField('Size', imgSize, true);
                 var imgType = action.buildField('Asset Type', reqBody.fields.file[config.locale].contentType, true);
 
                 attachmentObj.fields.push(imgType);
@@ -86,6 +87,31 @@ module.exports = (function () {
             attachment.push(attachmentObj);
 
             return attachment;
+        },
+
+        formatSizeUnit: function (size) {
+            var units = ' Bytes';
+
+            if (size >= 1000000) {
+                size /= 1000000;
+                units = ' MBs';
+            } else if (size >= 1000) {
+                size /= 1000;
+                units = ' KBs';
+            }
+
+            return size + units;
+        },
+
+        /**
+         * Builds the necessary image url to display a preview on a Slack message
+         * @param  {object} reqBody The request body of message
+         * @return {string}         The image url of the asset
+         */
+        buildImgUrl: function (reqBody) {
+            var imgUrl = 'http:' + reqBody.fields.file[config.locale].url;
+
+            return imgUrl;
         },
 
         /**
