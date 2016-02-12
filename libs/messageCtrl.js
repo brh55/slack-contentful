@@ -39,7 +39,7 @@ module.exports = (function () {
          */
         buildAttachment: function (reqBody) {
             var attachment = [];
-            var attachmentObj = model.attachmentObj;
+            var attachmentObj = nodeUtil._extend({}, model.attachmentObj);
             // Clear array from object
             attachmentObj.fields.length = 0;
 
