@@ -21,7 +21,7 @@ module.exports = utilTest({
     },
     getEntryString: function (test) {
         var entryString = filter.getEntryString();
-        var expectedString = '6OFbybzxM4WOCuIO4qo8Qs, 6aFz3qcuPe0eA8kwQm0Ume, entryID3, etc';
+        var expectedString = '6OFbybzxM4WOCuIO4qo8Qs,6aFz3qcuPe0eA8kwQm0Ume,entryID3,etc';
 
         test.strictEqual(entryString, expectedString);
 
