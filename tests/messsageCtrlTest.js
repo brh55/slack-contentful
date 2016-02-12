@@ -1,7 +1,7 @@
 var messageCtrlTest = require('nodeunit').testCase;
 var messageCtrl = require('../libs/messageCtrl');
 
-var mockBody = {
+var mockEntry = {
     sys:
       {space: {
           sys: {
@@ -33,12 +33,47 @@ var mockBody = {
     read: [Function]
 };
 
+var mockAsset = {
+    fields: {
+        file: {
+            'en-US': {
+                fileName: 'Screen Shot 2016-01-05 at 9.13.31 PM.png',
+                contentType: 'image/png',
+                details: {
+                    image: {
+                        width: 395,
+                        height: 193
+                    },
+                    size: 20178
+                },
+                url: '//images.contentful.com/blah/test'
+            }
+        },
+        title: {
+            'en-US': 'Asset Unit Test'
+        },
+        description: {
+            'en-US': 'Updating a field'
+        }
+    },
+    sys: {
+        space: {
+            sys: [Object]
+        },
+        type: 'Asset',
+        id: '5hqGi8CXfGkO6q8EmaCoWk',
+        revision: 119,
+        createdAt: '2016-02-10T04:10:59.610Z',
+        updatedAt: '2016-02-12T16:44:22.502Z'
+    }
+};
+
 module.exports = messageCtrlTest({
-    buildMessage: function (test) {
-        var message = messageCtrl.buildMessage(mockBody);
+    testEntry: function (test) {
+        var message = messageCtrl.buildMessage(mockEntry);
 
         test.equal(typeof message, 'object');
-        test.equal(message.channel, '#bot-testing');
+        test.equal(message.channel, '#Contentful-Updates');
 
         // Subject to change, but expect 3
         test.equal(message.attachments[0].fields.length, 3);
@@ -47,6 +82,26 @@ module.exports = messageCtrlTest({
         test.equal(message.attachments[0].fields[2].value, 'Entry');
         test.equal(message.attachments[0].title_link, 'https://app.contentful.com/spaces/test/entries/6aFz3qcuPe0eA8kwQm0U-test');
         test.equal(message.attachments[0].title, 'Test Title');
+        test.done();
+    },
+    testAsset: function (test) {
+        var message = messageCtrl.buildMessage(mockAsset);
+
+        var contentfulTypeField = message.attachments[0].fields[2];
+        var assetTypeField = message.attachments[0].fields[3];
+        var sizeField = message.attachments[0].fields[4];
+
+        test.equal(message.attachments[0].thumb_url, 'http://images.contentful.com/blah/test');
+        test.equal(assetTypeField.value, 'image/png');
+        test.equal(contentfulTypeField.value, 'Asset');
+        test.equal(sizeField.value, '20.178 KBs');
+        test.done();
+    },
+    testSize: function (test) {
+        mockAsset.fields.file['en-US'].details.size = 1000000;
+
+        var msgAsset = messageCtrl.buildMessage(mockAsset);
+        test.equal(msgAsset.attachments[0].fields[4].value, '1 MBs');
         test.done();
     }
 });
