@@ -1,6 +1,6 @@
 {
   "name": "slack-contentful",
-  "version": "0.2.0",
+  "version": "0.2.4",
   "description": "Slack notifications for entries and assets",
   "main": "server.js",
   "scripts": {
