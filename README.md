@@ -37,8 +37,9 @@ ENTRIES | Y | A comma seperated list of Contentful Entry IDs you want to be noti
 LOCALE | N (but preferred) | Contentful Locale to be tracked, currently only supports up to 1 | en-US 
 PORT  | N | The port for the node server to run on | 5000 
 UPDATE_COLOR | N  | Hex color for updates posted | #27ae60 
-BOT_USERNAME | N | The bot's username | Contentful Updates 
+BOT_USERNAME | N | The bot's username | ContentfulUpdates 
 BOT_EMOJI | N | The bot's icon | pencil2 
+LARGE_PREVIEW | N | Should a large image preview be used for an asset notification  | false
 
 Here's an example, of how your .env would look like.
 __.env__
@@ -51,6 +52,7 @@ PORT = 5000
 UPDATE_COLOR = #27ae60
 BOT_USERNAME = ContentfulUpdates
 BOT_EMOJI = bomb
+LARGE_PREVIEW = true
 ```
 
 ## Deploying Steps
