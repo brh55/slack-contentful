@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "xo && nodeunit tests",
-    "start": "node server.js"
+    "start": "node server.js",
+    "coveralls": "jscoverage test && SLACK_CONTENTFUL_COVERAGE=1 nodeunit --reporter=lcov tests | coveralls"
   },
   "keywords": [
     "slack",
@@ -23,6 +24,9 @@
     "nodeunit": "^0.9.1"
   },
   "devDependencies": {
+    "coveralls": "^2.11.6",
+    "jscoverage": "^0.6.0",
+    "nodeunit": "^0.9.1",
     "xo": "^0.12.1"
   },
   "xo": {

@@ -58,3 +58,8 @@ app.get('/check', function (req, res) {
 app.listen(port, function () {
     console.log('Slack Contentful is listening on PORT:', port);
 });
+
+module.exports = process.env.SLACK_CONTENTFUL_COVERAGE
+  ? require('./libs-cov/filter')
+  : require('./libs-cov/filter')
+
