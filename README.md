@@ -98,4 +98,6 @@ If set up was unsuccessful, you should get a message to verify your configuratio
 ![unsuccessful set up](https://cloud.githubusercontent.com/assets/6020066/13012522/3cf0076a-d171-11e5-96ed-3b1172e0f97a.png)
 
 ## Contribute
-Open to all PRs, just make a PR and reference the issue if applicable, or explain your in the PR. If it's suitable, I'll go ahead and merge it.
+If you would like to contribute to this project, take a look at the [wiki](https://github.com/brh55/slack-contentful/wiki) to get started.
+
+Feel free fork and submit PRs, if applicable reference the issue, or explain the intent of the PR. If it's suitable, I'll go ahead and merge it.
