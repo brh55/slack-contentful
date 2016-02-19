@@ -70,7 +70,7 @@ module.exports = (function () {
             if (reqBody.sys.type === 'Asset') {
                 // Set large preview if set
                 if (config.largePreview) {
-                    attachmentObj.image_Url = action.buildImgUrl(reqBody);
+                    attachmentObj.image_url = action.buildImgUrl(reqBody);
                 } else {
                     attachmentObj.thumb_url = action.buildImgUrl(reqBody);
                 }
