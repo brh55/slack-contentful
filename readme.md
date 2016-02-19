@@ -87,11 +87,11 @@ http://myherokuapp.heroku.com/check
 
 If you've successfully deployed, you should get a successful message stating *Successful Set-up* along with a table of configurations to verify against as depicted below.
 
-![successful set up](https://cloud.githubusercontent.com/assets/6020066/12940014/3539a25e-cf93-11e5-8ad2-804c00fe3d95.png)
+![successful set up](https://cloud.githubusercontent.com/assets/6020066/13191314/d56f7100-d730-11e5-91a9-fc595dc432ad.png)
 
 If set up was unsuccessful, you should get a message to verify your configurations, along with important configurations that the server has set up.
 
-![unsuccessful set up](https://cloud.githubusercontent.com/assets/6020066/13012522/3cf0076a-d171-11e5-96ed-3b1172e0f97a.png)
+![unsuccessful set up](https://cloud.githubusercontent.com/assets/6020066/13191312/d39a1574-d730-11e5-93f9-78b494319b01.png)
 
 ## Contribute
 If you would like to contribute to this project, take a look at the [wiki](https://github.com/brh55/slack-contentful/wiki) to get started.
