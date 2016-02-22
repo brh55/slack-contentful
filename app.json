@@ -43,6 +43,11 @@
       "description": "Hex value for updates posted to Slack",
       "value": "#27ae60",
       "required": false
+    },
+    "LARGE_PREVIEW": {
+      "description": "Should a large image preview be used for an asset notification",
+      "value": "false",
+      "required": false
     }
   }
 }
