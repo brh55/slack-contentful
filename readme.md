@@ -13,10 +13,16 @@ This Slack bot will allow users to set up notifications "on published" changes t
   * [Node.js](http://nodejs.org/)
   * [Contentful](http://contentful.com) Access to add outgoing hooks
 
-## Automated Set Up With Heroku
+## Automated Set Up w/ Heroku
+Allow for incoming hooks to your team's Slack
+
+[![Add to Slack](https://platform.slack-edge.com/img/add_to_slack.png)](https://slack.com/oauth/authorize?scope=incoming-webhook&client_id=7804118849.22604448065)
+
+Deploy the server to your own Heroku instance, and set `SLACK_WEBHOOK` to the incoming hook url from the integration above
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-At minimum you need to configure your Slack webhook and tracked entries. It's preferred to set your locale, and leave your bot's emojis and username blank as these can be edit through the "Incoming Hooks" page by other team members.
+It's preferred to set your locale, and leave your bot's emojis and username blank as these can be edit through the "Incoming Hooks" page by other team members.
 
 ## Manual Set Up
 
