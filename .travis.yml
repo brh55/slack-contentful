@@ -4,4 +4,4 @@ node_js:
 
 before_script:
   - npm install
-script: npm test
+script: cp ./example.env ./.env && npm test

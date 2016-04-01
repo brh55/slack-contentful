@@ -15,10 +15,6 @@ var filter = require('./libs/filter');
 
 var jsonParser = bodyParser.json({type: 'application/*'});
 
-// TODO: Implement Caching to only submit 1 update or find better method
-var nodeCache = require('node-cache');
-var entryCache = new nodeCache({checkperiod: 0});
-
 app.post('/', jsonParser, function (req, res) {
     // if request doesn't contain body, respond with 400 error.
     if (!req.body) {
@@ -31,15 +27,11 @@ app.post('/', jsonParser, function (req, res) {
     if (req.rawHeaders.indexOf('ContentManagement.Entry.publish') > -1 ||
             req.rawHeaders.indexOf('ContentManagement.Asset.publish') > -1 &&
             correctEntry) {
-        var key = req.body.sys.id;
-
-        if (entryCache.get(key) !== true) {
-            var message = messageCtrl.buildMessage(req.body);
-            slackService.sendMessage(message);
-            // Store Entries in ID-Revison#: true -- for 10 Minutes
-            entryCache.set(key, true, 600);
-        }
+        var message = messageCtrl.buildMessage(req.body);
+        slackService.sendMessage(message);
     }
+
+    res.sendStatus(200);
 });
 
 app.get('/check', function (req, res) {
