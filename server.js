@@ -16,36 +16,63 @@ var filter = require('./libs/filter');
 var jsonParser = bodyParser.json({type: 'application/*'});
 
 app.post('/', jsonParser, function (req, res) {
-    // if request doesn't contain body, respond with 400 error.
+    // If request doesn't contain body, respond with 400 error.
     if (!req.body) {
         return res.sendStatus(400);
     }
 
     var correctEntry = filter.checkEntry(req.body.sys.id);
-
-    // check for publish notifications
-    if (req.rawHeaders.indexOf('ContentManagement.Entry.publish') > -1 ||
-            req.rawHeaders.indexOf('ContentManagement.Asset.publish') > -1 &&
-            correctEntry) {
-        var message = messageCtrl.buildMessage(req.body);
+    var message = '';
+    
+    // Specific management can be managed through the Contentful webhook settings
+    if (config.trackAll) {
+        // If all entries want to be tracked and notified
+        message = messageCtrl.buildMessage(req.body, req.headers['x-contentful-topic']);
+    } else if (correctEntry) {
+        // Filter out only desired entries
+        message = messageCtrl.buildMessage(req.body, req.headers['x-contentful-topic']);
+    }
+    
+    if (message !== '') {
         slackService.sendMessage(message);
     }
-
+    
     res.sendStatus(200);
 });
 
 app.get('/check', function (req, res) {
     var css = '<style>h1,h3,p{margin:10px 20px;font-family:sans-serif};table a:link,table a:visited{font-weight:700;text-decoration:none}table td:first-child,table th:first-child{text-align:left;padding-left:20px}table td,table th{border-bottom:1px solid #e0e0e0}table a:link{color:#666}table a:visited{color:#999}table a:active,table a:hover{color:#bd5a35;text-decoration:underline}table{font-family:Arial,Helvetica,sans-serif;color:#666;font-size:12px;text-shadow:1px 1px 0 #fff;background:#eaebec;margin:20px;border:1px solid #ccc;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;-moz-box-shadow:0 1px 2px #d1d1d1;-webkit-box-shadow:0 1px 2px #d1d1d1;box-shadow:0 1px 2px #d1d1d1}table th{padding:21px 25px 22px;border-top:1px solid #fafafa;background:#ededed;background:-webkit-gradient(linear,left top,left bottom,from(#ededed),to(#ebebeb));background:-moz-linear-gradient(top,#ededed,#ebebeb)}table tr:first-child th:first-child{-moz-border-radius-topleft:3px;-webkit-border-top-left-radius:3px;border-top-left-radius:3px}table tr:first-child th:last-child{-moz-border-radius-topright:3px;-webkit-border-top-right-radius:3px;border-top-right-radius:3px}table tr{text-align:center;padding-left:20px}table td:first-child{border-left:0}table td{padding:18px;border-top:1px solid #fff;border-left:1px solid #e0e0e0;background:#fafafa;background:-webkit-gradient(linear,left top,left bottom,from(#fbfbfb),to(#fafafa));background:-moz-linear-gradient(top,#fbfbfb,#fafafa)}table tr.even td{background:#f6f6f6;background:-webkit-gradient(linear,left top,left bottom,from(#f8f8f8),to(#f6f6f6));background:-moz-linear-gradient(top,#f8f8f8,#f6f6f6)}table tr:last-child td{border-bottom:0}table tr:last-child td:first-child{-moz-border-radius-bottomleft:3px;-webkit-border-bottom-left-radius:3px;border-bottom-left-radius:3px}table tr:last-child td:last-child{-moz-border-radius-bottomright:3px;-webkit-border-bottom-right-radius:3px;border-bottom-right-radius:3px}table tr:hover td{background:#f2f2f2;background:-webkit-gradient(linear,left top,left bottom,from(#f2f2f2),to(#f0f0f0));background:-moz-linear-gradient(top,#f2f2f2,#f0f0f0)}</style>';
 
+    var htmlString = "";
+
     if (util.allDefined(config)) {
         var entries = filter.getEntryString();
-        var htmlString = '<h1>Successful Set-up</h1><h3>Please verify settings below:</h3>';
-        htmlString += '<table><thead><tr><th>Channel</th><th>Bot Username</th><th>Entries Tracked</th><th>Contentful Locale</th></tr></thead><tbody><tr><td>' + config.channel + '</td><td>' + config.username + '</td><td>' + entries + '</td><td>' + config.locale + '</td></tr></tbody></table>';
-        res.send(css + htmlString);
+        var configKeys = Object.keys(config) 
+
+        htmlString = '<h1>Successful Set-up</h1><h3>Please verify settings below:</h3><table><thead><tr><th>Configuration</th><th>Value</th></tr>';
+
+        for (var i = 0; i < configKeys.length; i++) {
+            // Do not expose webhook URL
+            if (configKey[i] !== 'webhook') {
+                htmlString += '<tr><td>' + configKeys[i] + '</td><td>' + config[configKeys[i]] + '</td></tr>';
+            }
+            
+            if (i === configKeys.length - 1) {
+                htmlString =+ '</tbody></table>';    
+            }
+        }
+        
     } else {
-        var undefConfigs = util.getUndefinedKeys(config, ', ');
-        res.send(css + '<h1>Opps, please verify the following configs:</h1><p>' + undefConfigs + '</p>');
+        var undefinedConfigs = util.getUndefinedKeys(config);
+
+        for (var i = 0; i < undefinedConfigs.length; i++) {
+            undefinedConfigs[i] = "<li>" + undefinedConfigs[i] + "</li>";
+        }
+
+        htmlString = '<h1>Opps, please verify the following configs:</h1><ul>' + undefinedConfigs.join('') + '</ul>';
     }
+
+     res.send(css + htmlString);
 });
 
 app.listen(port, function () {

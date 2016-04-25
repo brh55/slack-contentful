@@ -13,5 +13,6 @@ module.exports = {
     username: process.env.BOT_USERNAME || 'Contentful Update',
     updateColor: process.env.UPDATE_COLOR || '#27ae60',
     locale: process.env.LOCALE || 'en-US',
-    largePreview: process.env.LARGE_PREVIEW || false
+    largePreview: process.env.LARGE_PREVIEW || false,
+    trackAll: process.env.TRACK_ALL || false
 };

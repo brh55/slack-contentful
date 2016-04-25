@@ -46,17 +46,18 @@ module.exports = (function () {
         /**
          * Return undefined keys of object
          * @param  {object} object object in question
-         * @return {string}        string of undefined valued keys
+         * @return {array}        array of undefined valued keys
          */
-        getUndefinedKeys: function (object, formatSeparator) {
-            var undefKeys = [];
+        getUndefinedKeys: function (object) {
+            var undefinedKeys = [];
+
             for (var key in object) {
                 if (nodeUtil.isUndefined(object[key])) {
-                    undefKeys.push(key);
+                    undefinedKeys.push(key);
                 }
             }
 
-            return undefKeys.toString().replace(/,/g, formatSeparator);
+            return undefinedKeys;
         }
     };
 

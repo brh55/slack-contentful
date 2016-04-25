@@ -37,7 +37,7 @@ module.exports = (function () {
          * @param  {string} message string
          * @return {array}         attachment array containing message
          */
-        buildAttachment: function (reqBody) {
+        buildAttachment: function (reqBody, updateType) {
             var attachment = [];
             var attachmentObj = nodeUtil._extend({}, model.attachmentObj);
             // Clear array from object
@@ -62,8 +62,11 @@ module.exports = (function () {
             var fieldsField = action.buildField('Fields', keyString, false);
             var dateField = action.buildDateField(reqBody.sys.updatedAt);
             var entryField = action.buildEntryField(reqBody.sys.type);
+            // TODO: Parse Update Type
+            var updateTypeField = action.buildField('Update Type', updateType, false);
 
             attachmentObj.fields.push(fieldsField);
+            attachmentObj.fields.push(updateTypeField);
             attachmentObj.fields.push(dateField);
             attachmentObj.fields.push(entryField);
 
@@ -174,8 +177,8 @@ module.exports = (function () {
          * @param  {object} reqBody JSON of request body
          * @return {object}         prase message based on JSON request body
          */
-        buildMessage: function (reqBody) {
-            var attachment = action.buildAttachment(reqBody);
+        buildMessage: function (reqBody, updateType) {
+            var attachment = action.buildAttachment(reqBody, updateType);
             var message = model.message;
 
             message.attachments = attachment;
