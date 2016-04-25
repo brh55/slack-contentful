@@ -22,13 +22,18 @@
     },
     "ENTRIES": {
       "description": "Comma seperated list of Contentful Entry IDs you want to be notified of",
-      "required": true
+      "required": false
     },
     "LOCALE": {
       "description": "Contentful default Locale to serve as primary source of updates",
       "value": "en-US",
       "required": true
-    }
+    },
+    "TRACK_ALL" {
+      "description": "Track all Contentful updates. NOTE: This will override existing tracked entries filtering",
+      "value": "false",
+      "required": false
+    },
     "BOT_USERNAME": {
       "description": "The slack bot's username. NOTE: Setting this will override integration settings",
       "value": "Contentful-Update",
