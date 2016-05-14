@@ -6,18 +6,15 @@ var app = express();
 var port = process.env.PORT || 5000;
 
 // Libs
-var bodyParser = require('body-parser');
-var util = require('./libs/util');
-var config = require('./libs/config');
-var slackService = require('./libs/slackService');
-var messageCtrl = require('./libs/messageCtrl');
-var filter = require('./libs/filter');
-
-var jsonParser = bodyParser.json({type: 'application/*'});
+var util = require('./helpers/util');
+var config = require('./config');
+var slackService = require('./services/slack');
+var messageCtrl = require('./controllers/message');
+var filter = require('./helpers/filter');
 
 // Routes
-var notifyRoute = require('/routes/notify');
-var debugRoute = require('/routes/debug');
+var notifyRoute = require('./routes/notify');
+var debugRoute = require('./routes/debug');
 
 app.use('/', notifyRoute);
 app.use('/debug', debugRoute);

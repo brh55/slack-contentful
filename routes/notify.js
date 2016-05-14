@@ -1,8 +1,12 @@
 // Default/Notify Route
 // This route serves as the main route for notifying through Slack
+'use strict';
 
 var express = require('express');
-var router = express().Router();
+var router = express.Router();
+
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json({type: 'application/*'});
 
 router.post('/', jsonParser, function (req, res) {
     // If request doesn't contain body, respond with 400 error.
