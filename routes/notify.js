@@ -5,6 +5,8 @@
 var express = require('express');
 var router = express.Router();
 
+var filter = require('../helpers/filter');
+var config = require('../config');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json({type: 'application/*'});
 
