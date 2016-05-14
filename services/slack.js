@@ -1,7 +1,7 @@
 'use strict';
 
 var Slack = require('node-slack');
-var config = require('./config');
+var config = require('../config');
 var nodeUtil = require('util');
 
 module.exports = (function () {
@@ -17,7 +17,7 @@ module.exports = (function () {
      * Slack Wrapper to send Slack message
      * @param  {object} message object message to be send
      */
-    var sendMessage = function (message) {
+    function sendMessage (message) {
         slack.send(message);
     };
 
