@@ -83,11 +83,11 @@ LARGE_PREVIEW = true
 3. Locate the cog icon labeled settings, and click on 'webhooks'.
 4. Hit 'New Webhook', and enter your server address in the URL bar.
 5. Click 'Create Webhook'.
-6. The notifications can be customized based on particular events. __examine below__
+6. The notifications can be customized based on particular events. **examine config below**
 
 ![Contentful Event Triggers](https://cloud.githubusercontent.com/assets/6020066/15280632/9f83b0e2-1b00-11e6-8d80-e34e552c06d8.png)
 
-__NOTE: AUTO_SAVE event will be triggered after PUBLISH events.__
+**NOTE: AUTO_SAVE event will be triggered after PUBLISH events.**
 
 ## Post Deployment - Test & Debugging
 After your app has deployed, go to your server url and go to the `/debug` endpoint to verify your settings, and help with debugging any potential issues.
