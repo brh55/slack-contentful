@@ -1,8 +1,8 @@
 'use strict';
 /* eslint camelcase:0 */
 
-var util = require('../helpers/util');
 var nodeUtil = require('util');
+var util = require('../helpers/util');
 var config = require('../config');
 var model = require('../models/slackMessage');
 

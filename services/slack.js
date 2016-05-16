@@ -1,8 +1,8 @@
 'use strict';
 
+var nodeUtil = require('util');
 var Slack = require('node-slack');
 var config = require('../config');
-var nodeUtil = require('util');
 
 module.exports = (function () {
     var slack;

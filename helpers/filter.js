@@ -1,7 +1,7 @@
 'use strict';
 
-var config = require('../config');
 var nodeUtil = require('util');
+var config = require('../config');
 
 // Declare Contentful entries of what you want to be notified of
 module.exports = (function () {

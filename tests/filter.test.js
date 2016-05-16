@@ -1,5 +1,5 @@
 var utilTest = require('nodeunit').testCase;
-var filter = require('../libs/filter');
+var filter = require('../helpers/filter');
 
 // Using example.env as env for testing environment
 

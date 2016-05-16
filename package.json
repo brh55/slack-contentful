@@ -30,7 +30,8 @@
     ],
     "space": 4,
     "rules": {
-      "new-cap": 0
+      "new-cap": 0,
+      "xo/filename-case": ["error", {"case": "camelCase"}]
     },
     "ignore": [
       "models/**"

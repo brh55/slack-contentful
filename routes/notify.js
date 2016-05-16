@@ -3,6 +3,7 @@
 'use strict';
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var router = express.Router();
 
 var filter = require('../helpers/filter');
@@ -10,7 +11,6 @@ var config = require('../config');
 var messageCtrl = require('../controllers/message');
 var slackService = require('../services/slack');
 
-var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json({type: 'application/*'});
 
 router.post('/', jsonParser, function (req, res) {

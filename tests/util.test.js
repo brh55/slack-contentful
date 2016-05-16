@@ -1,5 +1,5 @@
 var utilTest = require('nodeunit').testCase;
-var util = require('../libs/util');
+var util = require('../helpers/util');
 
 var undefMockObj = {
     testProp1: undefined,
@@ -35,9 +35,10 @@ module.exports = utilTest({
         test.done();
     },
     getUndefinedKeys: function (test) {
-        var testList = util.getUndefinedKeys(undefMockObj, '+');
+        var testList = util.getUndefinedKeys(undefMockObj);
 
-        test.equal(testList, 'testProp1+testProp5+testProp6+testProp7');
+        test.equal(testList[0], 'testProp1');
+        test.equal(testList[3], 'testProp7');
         test.done();
     }
 });
