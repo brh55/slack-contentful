@@ -3,7 +3,6 @@
 var nodeUtil = require('util');
 
 module.exports = (function () {
-
     /**
      * Format date of ISO Date
      * @param  {string} ISODate ISODate format
@@ -27,7 +26,7 @@ module.exports = (function () {
         var formattedDate = monthDate + ' ' + hours + ':' + mins + ' ' + suffix + ' UTC';
 
         return formattedDate;
-    };
+    }
 
     /**
      * Checks if all keys do not have undefined values string values
@@ -41,7 +40,7 @@ module.exports = (function () {
             }
         }
         return true;
-    };
+    }
 
     /**
      * Return undefined keys of object
@@ -58,7 +57,7 @@ module.exports = (function () {
         }
 
         return undefinedKeys;
-    };
+    }
 
     return {
         formatDate: formatDate,
