@@ -1,7 +1,7 @@
 # Slack Contentful  ![Slack Icon](http://dist.alternativeto.net/icons/slack_59044.png?width=50&height=50&mode=crop&anchor=middlecenter)   ![Contentful Icon](https://lh5.googleusercontent.com/SiTAEkDd09U_7ngpQgCzQq4LXL-1876MnOr0AdCofQ0-l5TCWIUXRGviAQlAABj6h9bB6WLE=s50-h50-e365)
 
 [![GitHub tag](https://img.shields.io/github/tag/brh55/slack-contentful.svg?style=flat-square&labe=version)]()
-[![Travis branch](https://img.shields.io/travis/brh55/slack-contentful/master.svg?style=flat-square)](https://travis-ci.org/brh55/slack-contentful) [![devDendencies Status](https://david-dm.org/brh55/slack-contentful/dev-status.svg?style=flat-square)](https://david-dm.org/brh55/slack-contentful#info=Dependencies)
+[![Travis branch](https://img.shields.io/travis/brh55/slack-contentful/master.svg?style=flat-square)](https://travis-ci.org/brh55/slack-contentful) [![Dependency Status](https://david-dm.org/brh55/slack-contentful.svg?style=flat-square)](https://david-dm.org/brh55/slack-contentful)
 
 Slack-contentful allows users to recieve push notifications on specified Contentful updates to a designated Slack channel. Updates are based on the following events: create, save, auto save, archive, unarchive, publish, unpublish, and delete.
 
