@@ -24,7 +24,7 @@ module.exports = (function () {
         }
 
         return model.entryList;
-    };
+    }
 
     /**
      * Determines if user has defined .env ENTRIES
@@ -32,7 +32,7 @@ module.exports = (function () {
      */
     function isEntryDefined() {
         return (!nodeUtil.isUndefined(model.entryString));
-    };
+    }
 
     /**
      * Returns entry string as defined by user
@@ -41,7 +41,7 @@ module.exports = (function () {
     function getEntryString() {
         return (isEntryDefined()) ?
             model.entryString : '';
-    };
+    }
 
     /**
      * Compare incoming hook entry against entry list
@@ -51,7 +51,7 @@ module.exports = (function () {
     function checkEntry(entryId) {
         var entryList = getEntries();
         return (entryList.indexOf(entryId) > -1);
-    };
+    }
 
     return {
         getEntries: getEntries,

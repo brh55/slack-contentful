@@ -25,7 +25,7 @@ module.exports = (function () {
 
         switch (contentfulType) {
             // TODO: Make content type updates a bit more meaningful
-            case "ContentType":
+            case 'ContentType':
                 updateTitle = reqBody.name;
 
                 keys = [];
@@ -34,7 +34,7 @@ module.exports = (function () {
                 }
 
                 keyString = keys.toString()
-                                    .replace(/,/g, ', ');
+                                .replace(/,/g, ', ');
                 break;
 
             default:
@@ -42,9 +42,9 @@ module.exports = (function () {
                     reqBody.fields.title[config.locale] :
                     reqBody.fields.name[config.locale];
 
-                    keys = Object.keys(reqBody.fields);
-                    keyString = keys.toString()
-                                    .replace(/,/g, ', ');
+                keys = Object.keys(reqBody.fields);
+                keyString = keys.toString()
+                                .replace(/,/g, ', ');
                 break;
         }
 
@@ -54,8 +54,6 @@ module.exports = (function () {
 
         // TODO: See if particular field changes are given in the payload,
         // if so, narrow the displayed results to something more meaningful.
-
-
         attachmentObj.text = '';
 
         var fieldsField = buildField('Updated Fields', keyString, false);
@@ -88,7 +86,7 @@ module.exports = (function () {
         attachment.push(attachmentObj);
 
         return attachment;
-    };
+    }
 
     function formatSizeUnit(size) {
         var units = ' Bytes';
@@ -102,7 +100,7 @@ module.exports = (function () {
         }
 
         return size + units;
-    };
+    }
 
     /**
      * Builds the necessary image url to display a preview on a Slack message
@@ -113,7 +111,7 @@ module.exports = (function () {
         var imgUrl = 'http:' + reqBody.fields.file[config.locale].url;
 
         return imgUrl;
-    };
+    }
 
     /**
      * Build associated contentful Url for Entry
@@ -123,35 +121,35 @@ module.exports = (function () {
      */
     function buildEntryUrl(spaceId, entryId) {
         return 'https://app.contentful.com/spaces/' + spaceId + '/entries/' + entryId;
-    };
+    }
 
     /**
      * Builds a Date Short Field Object
      * @param  {string} ISODate ISO Format of date
      * @return {object}      Short field declaring date of update
      */
-    function buildDateField (ISODate) {
+    function buildDateField(ISODate) {
         var dateField = nodeUtil._extend({}, model.shortField);
 
         dateField.title = 'Updated At';
         dateField.value = util.formatDate(ISODate);
 
         return dateField;
-    };
+    }
 
     /**
      * Builds a Entry Short Field Object
      * @param  {string} entryType Type of Contentful Entry
      * @return {object}           Short field declaring type of entry
      */
-    function buildEntryField (entryType) {
+    function buildEntryField(entryType) {
         var entryField = nodeUtil._extend({}, model.shortField);
 
         entryField.title = 'Type';
         entryField.value = entryType;
 
         return entryField;
-    };
+    }
 
     /**
      * Build a generic field short or long
@@ -168,7 +166,7 @@ module.exports = (function () {
         field.value = value;
 
         return field;
-    };
+    }
 
     /**
      * Builds Payload to be sent to Slack hook
@@ -181,7 +179,7 @@ module.exports = (function () {
 
         message.attachments = attachment;
         return message;
-    };
+    }
 
     function normalizeType(updateType) {
         var tempList = updateType.split('.');
@@ -189,7 +187,7 @@ module.exports = (function () {
 
         type.replace(/_/g, ' ');
         return type;
-    };
+    }
 
     return {
         buildMessage: buildMessage
