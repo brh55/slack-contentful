@@ -85,20 +85,20 @@ LARGE_PREVIEW = true
 5. Click 'Create Webhook'.
 
 ## Post Deployment - Test & Debugging
-After your app has deployed, go to your server url and go to the `/check` endpoint to verify your settings, and help with debugging any potential issues.
+After your app has deployed, go to your server url and go to the `/debug` endpoint to verify your settings, and help with debugging any potential issues.
 
 Example:
 ```
-http://myherokuapp.heroku.com/check
+http://myherokuapp.heroku.com/debug
 ```
 
 If you've successfully deployed, you should get a successful message stating *Successful Set-up* along with a table of configurations to verify against as depicted below.
 
-![successful set up](https://cloud.githubusercontent.com/assets/6020066/13191314/d56f7100-d730-11e5-91a9-fc595dc432ad.png)
+![successful set up](https://cloud.githubusercontent.com/assets/6020066/15280537/590f2458-1aff-11e6-830f-e50bad8286c7.png)
 
 If set up was unsuccessful, you should get a message to verify your configurations, along with important configurations that the server has set up.
 
-![unsuccessful set up](https://cloud.githubusercontent.com/assets/6020066/13191312/d39a1574-d730-11e5-93f9-78b494319b01.png)
+![unsuccessful set up](https://cloud.githubusercontent.com/assets/6020066/15280538/5b14e4ea-1aff-11e6-8c8e-d4db740fb718.png)
 
 ## Contribute
 If you would like to contribute to this project, take a look at the [wiki](https://github.com/brh55/slack-contentful/wiki) to get started.
