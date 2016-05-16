@@ -3,7 +3,7 @@
 [![GitHub tag](https://img.shields.io/github/tag/brh55/slack-contentful.svg?style=flat-square&labe=version)]()
 [![Travis branch](https://img.shields.io/travis/brh55/slack-contentful/master.svg?style=flat-square)](https://travis-ci.org/brh55/slack-contentful) [![devDendencies Status](https://david-dm.org/brh55/slack-contentful/dev-status.svg?style=flat-square)](https://david-dm.org/brh55/slack-contentful#info=Dependencies)
 
-This Slack bot will allow users to set up notifications "on published" changes to specified Contentful entries and assets to a designated Slack channel.
+Slack-contentful allows users to recieve push notifications on specified Contentful updates to a designated Slack channel. Updates are based on the following events: create, save, auto save, archive, unarchive, publish, unpublish, and delete.
 
 ![Example Update](https://cloud.githubusercontent.com/assets/6020066/13190874/ef823788-d72d-11e5-997a-4a88383ccdfd.png)
 
@@ -83,6 +83,11 @@ LARGE_PREVIEW = true
 3. Locate the cog icon labeled settings, and click on 'webhooks'.
 4. Hit 'New Webhook', and enter your server address in the URL bar.
 5. Click 'Create Webhook'.
+6. The notifications can be customized based on particular events. __examine below__
+
+[grainularity of updates](https://cloud.githubusercontent.com/assets/6020066/15280632/9f83b0e2-1b00-11e6-8d80-e34e552c06d8.png)
+
+__NOTE: AUTO_SAVE event will be triggered after PUBLISH events.__
 
 ## Post Deployment - Test & Debugging
 After your app has deployed, go to your server url and go to the `/debug` endpoint to verify your settings, and help with debugging any potential issues.

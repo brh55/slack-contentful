@@ -1,7 +1,7 @@
 {
   "name": "slack-contentful",
   "version": "0.2.5",
-  "description": "Slack notifications for entries and assets",
+  "description": "allows users to recieve push notifications on specified Contentful updates to a designated Slack channel",
   "main": "server.js",
   "scripts": {
     "test": "xo && nodeunit tests",
