@@ -85,7 +85,7 @@ LARGE_PREVIEW = true
 5. Click 'Create Webhook'.
 6. The notifications can be customized based on particular events. __examine below__
 
-[grainularity of updates](https://cloud.githubusercontent.com/assets/6020066/15280632/9f83b0e2-1b00-11e6-8d80-e34e552c06d8.png)
+![Contentful Event Triggers](https://cloud.githubusercontent.com/assets/6020066/15280632/9f83b0e2-1b00-11e6-8d80-e34e552c06d8.png)
 
 __NOTE: AUTO_SAVE event will be triggered after PUBLISH events.__
 
