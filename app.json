@@ -29,7 +29,7 @@
       "value": "en-US",
       "required": true
     },
-    "TRACK_ALL" {
+    "TRACK_ALL": {
       "description": "Track all Contentful updates. NOTE: This will override existing tracked entries filtering",
       "value": "false",
       "required": false
